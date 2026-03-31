@@ -229,3 +229,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939ca278bd225064299a616c4304c4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineGrabber
+  _bombHoldingSprite: {fileID: 509177481554914400, guid: c2488524abb77654ca513c92101b67c1, type: 3}
+  _spriteRenderer: {fileID: 5597013633290558718}
