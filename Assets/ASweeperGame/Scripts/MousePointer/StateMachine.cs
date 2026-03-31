@@ -186,9 +186,9 @@ public class ClickingBombsState : State
             stateMachine.ChangeState(stateMachine.GetNewState());
 
 
-        if (MoveToward(_targetBomb.transform.position, 0.1f, 10f, 0.5f))
+        if (MoveToward(_targetBomb.transform.position, 0.1f, 2f, 0.5f))
         {
-             _targetBomb.Explode();
+            _targetBomb.Explode();
             stateMachine.ChangeState(stateMachine.GetNewState());
         }
     }
@@ -233,9 +233,9 @@ public class StateMachine : MonoBehaviour
        float rand = Random.Range(0f, 1f);
         MousePointerState randomChoice;
 
-        if(rand < 0.8f)
+        if(rand < 0.7f)
             randomChoice = MousePointerState.Roaming;
-        else if (rand < 0.95f)
+        else if (rand < 0.90f)
             randomChoice = MousePointerState.ClickingBombs;
         else
             randomChoice = MousePointerState.Dragging;
@@ -246,8 +246,7 @@ public class StateMachine : MonoBehaviour
         switch (randomChoice)
         {
             case MousePointerState.ClickingBombs: 
-                //return new ClickingBomState(this);
-                //break;
+                return new ClickingBombsState(this);
             case MousePointerState.Dragging: 
                 return new DraggingState(this);
             case MousePointerState.Roaming:
