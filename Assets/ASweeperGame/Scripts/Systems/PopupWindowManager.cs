@@ -8,7 +8,8 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class PopupWindowManager : MonoBehaviour
 {
-    [SerializeField] private float _popupTrySpawnTime;
+    [SerializeField] private float _popupTrySpawnTime = 5f;
+    private float _timeSinceLastPopupSpawnAttempt = 0f;
 
     // Replace type GameObject -> Popup interface object
     [SerializeField] private List<PopupWindow> _popupWindows = new List<PopupWindow>();
@@ -30,15 +31,24 @@ public class PopupWindowManager : MonoBehaviour
 
     public void Update()
     {
-        TryToSpawnPopup();
-  
+        _timeSinceLastPopupSpawnAttempt += Time.deltaTime;
+        if (_timeSinceLastPopupSpawnAttempt >= _popupTrySpawnTime)
+        {
+            _timeSinceLastPopupSpawnAttempt = 0f;
+            TryToSpawnPopup();
+        }
     }
 
     private void TryToSpawnPopup()
     {
         for (int i = 0; i < 5; i++)
         {
-            Vector2 randomPosition = _popupSpawnableArea[Random.Range(0, _popupSpawnableArea.Length)].position;
+            Transform randomSpawnArea = _popupSpawnableArea[Random.Range(0, _popupSpawnableArea.Length)].transform;
+            Vector2 randomPosition = new Vector2(
+                Random.Range(randomSpawnArea.position.x - randomSpawnArea.localScale.x / 2, randomSpawnArea.position.x + randomSpawnArea.localScale.x / 2),
+                Random.Range(randomSpawnArea.position.y - randomSpawnArea.localScale.y / 2, randomSpawnArea.position.y + randomSpawnArea.localScale.y / 2)
+                );
+
             if (!IsOverlappingExistingPopup(randomPosition))
             {
                 SpawnPopup(randomPosition);
