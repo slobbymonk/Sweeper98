@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7baa90b6bb3c646884da5e3e87f74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupWindow
+  _bgSpriteRenderer: {fileID: 8664637257081551310}
+  _contentSpriteRenderer: {fileID: 2634447940320724204}
 --- !u!61 &2941076830099897992
 BoxCollider2D:
   m_ObjectHideFlags: 0
