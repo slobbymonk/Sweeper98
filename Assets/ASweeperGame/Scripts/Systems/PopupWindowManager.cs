@@ -41,7 +41,8 @@ public class PopupWindowManager : MonoBehaviour
             Vector2 randomPosition = _popupSpawnableArea[Random.Range(0, _popupSpawnableArea.Length)].position;
             if (!IsOverlappingExistingPopup(randomPosition))
             {
-                SpawnPopup();
+                SpawnPopup(randomPosition);
+                return;
             }
         }
     }
@@ -49,18 +50,18 @@ public class PopupWindowManager : MonoBehaviour
     {
         foreach (var popup in _popupWindows)
         {
-            if (Vector3.Distance(popup.BGSpriteRenderer.transform.position, popupArea) > popup.BGSpriteRenderer.transform.localScale.x
-                && Vector3.Distance(popup.BGSpriteRenderer.transform.position, popupArea) > popup.BGSpriteRenderer.transform.localScale.y)
+            if (Vector3.Distance(popup.BGSpriteRenderer.transform.position, popupArea) < popup.BGSpriteRenderer.transform.localScale.x
+                || Vector3.Distance(popup.BGSpriteRenderer.transform.position, popupArea) < popup.BGSpriteRenderer.transform.localScale.y)
             {
                 return true;
             }
         }
         return false;
     }
-    void SpawnPopup()
+    void SpawnPopup(Vector2 position)
     {
-        int randomPopupIndex = Random.Range(0, _popupWindows.Count);
-        PopupWindow popup = Instantiate(_popupPrefab[randomPopupIndex], transform.position, Quaternion.identity).GetComponent<PopupWindow>();
+        int randomPopupIndex = Random.Range(0, _popupPrefab.Length);
+        PopupWindow popup = Instantiate(_popupPrefab[randomPopupIndex], position, Quaternion.identity).GetComponent<PopupWindow>();
         _popupWindows.Add(popup);
         popup.OnDestroyed += HandlePopupDestroyed;
     }
