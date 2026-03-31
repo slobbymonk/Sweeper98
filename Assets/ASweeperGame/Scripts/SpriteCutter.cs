@@ -17,7 +17,7 @@ public class SpriteCutter : MonoBehaviour
 
         mask.isCustomRangeActive = true;
         mask.sprite = _maskSprite;
-        mask.frontSortingOrder = order;
+        mask.frontSortingOrder = order + 1;
         mask.backSortingOrder = order - 1;
     }
 }

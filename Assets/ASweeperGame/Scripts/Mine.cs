@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mine : MonoBehaviour
 {
@@ -24,11 +25,32 @@ public class Mine : MonoBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
+            if (colliders[i].gameObject.TryGetComponent<PlayerController>(out var player))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
+            {
+                Destroy(closeButton.Window.gameObject);
+                continue;
+            }
+
             if (!colliders[i].gameObject.TryGetComponent<PopupWindow>(out var window)) continue;
 
             _circleCutter.Cut(window, _circleRadius);
             int renderingOrder = window.RenderingOrder;
             _spriteCutter.Cut(window, renderingOrder, _explosionRange);
+        }
+
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.TryGetComponent<PopupWindow>(out var window) 
+            || collision.gameObject.TryGetComponent<Mine>(out var _))
+        {
+            Explode();
         }
     }
 
