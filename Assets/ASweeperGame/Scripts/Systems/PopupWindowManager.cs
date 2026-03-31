@@ -8,10 +8,14 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class PopupWindowManager : MonoBehaviour
 {
+    [SerializeField] private float _popupTrySpawnTime;
+
     // Replace type GameObject -> Popup interface object
     [SerializeField] private List<PopupWindow> _popupWindows = new List<PopupWindow>();
     public List<PopupWindow> PopupWindows => _popupWindows;
     [SerializeField] private GameObject[] _popupPrefab;
+
+    [SerializeField] private Transform[] _popupSpawnableArea;
 
     public static PopupWindowManager Instance { get; private set; }
 
@@ -21,9 +25,38 @@ public class PopupWindowManager : MonoBehaviour
     }
     private void Start()
     {
-        SpawnPopup();
+        
     }
 
+    public void Update()
+    {
+        TryToSpawnPopup();
+  
+    }
+
+    private void TryToSpawnPopup()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Vector2 randomPosition = _popupSpawnableArea[Random.Range(0, _popupSpawnableArea.Length)].position;
+            if (!IsOverlappingExistingPopup(randomPosition))
+            {
+                SpawnPopup();
+            }
+        }
+    }
+    private bool IsOverlappingExistingPopup(Vector2 popupArea)
+    {
+        foreach (var popup in _popupWindows)
+        {
+            if (Vector3.Distance(popup.BGSpriteRenderer.transform.position, popupArea) > popup.BGSpriteRenderer.transform.localScale.x
+                && Vector3.Distance(popup.BGSpriteRenderer.transform.position, popupArea) > popup.BGSpriteRenderer.transform.localScale.y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     void SpawnPopup()
     {
         int randomPopupIndex = Random.Range(0, _popupWindows.Count);
