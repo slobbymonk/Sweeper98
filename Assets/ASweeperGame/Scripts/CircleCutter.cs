@@ -21,6 +21,7 @@ public class CircleCutter : MonoBehaviour
         Vector2 localCircleCenter = colliderTransform.InverseTransformPoint(_circleCenter);
         Vector3 scale = colliderTransform.lossyScale;
 
+        // Build subject path from whatever collider is present
         PathsD subject = new PathsD();
 
         if (collider is BoxCollider2D box)
@@ -54,6 +55,7 @@ public class CircleCutter : MonoBehaviour
             return;
         }
 
+        // Build circle path
         PathD circlePath = new PathD();
         for (int j = 0; j < _circleResolution; j++)
         {
@@ -64,8 +66,10 @@ public class CircleCutter : MonoBehaviour
             ));
         }
 
+        // Subtract
         PathsD solution = Clipper.Difference(subject, new PathsD { circlePath }, FillRule.NonZero);
 
+        // Replace collider with PolygonCollider2D
         GameObject windowGO = collider.gameObject;
         Destroy(collider);
 

@@ -18,7 +18,9 @@ public class PopupWindowManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
+    }
+    private void Start()
+    {
         SpawnPopup();
     }
 

@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class SpriteCutter : MonoBehaviour
 {
-    [SerializeField] private SpriteMask _mask;
+    [SerializeField] private Sprite _maskSprite;
 
-    private void Awake()
+    public void Cut(PopupWindow window, int order, Transform bombTransform)
     {
-        _mask.enabled = false;
-    }
-
-    public void Cut()
-    {
-        _mask.enabled = true;
+        GameObject maskGO = new GameObject();
+        maskGO.transform.position = bombTransform.position;
+        maskGO.transform.localScale = bombTransform.localScale;
+        maskGO.transform.parent = window.transform;
+        SpriteMask mask = maskGO.AddComponent<SpriteMask>();
         transform.parent = null;
+
+        mask.isCustomRangeActive = true;
+        mask.sprite = _maskSprite;
+        mask.frontSortingOrder = order;
+        mask.backSortingOrder = order - 1;
     }
 }
