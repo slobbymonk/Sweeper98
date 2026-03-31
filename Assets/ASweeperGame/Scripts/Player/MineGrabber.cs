@@ -89,6 +89,7 @@ public class MineGrabber : MonoBehaviour
         _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos;
         _currentlyHeldMine.transform.parent = null;
         _currentlyHeldMine.Rb.bodyType = RigidbodyType2D.Dynamic;
+        _currentlyHeldMine.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         _currentlyHeldMine.Rb.AddForce(_aimDirection * force * Time.deltaTime, ForceMode2D.Impulse);
 
         _spriteRenderer.sprite = _defaultSprite;
@@ -123,6 +124,7 @@ public class MineGrabber : MonoBehaviour
             mine.transform.localPosition = Vector3.zero;
             _heldMineBaseLocalPos = Vector3.zero;
             mine.Rb.bodyType = RigidbodyType2D.Kinematic;
+            mine.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             _spriteRenderer.sprite = _bombHoldingSprite;
         }
     }
