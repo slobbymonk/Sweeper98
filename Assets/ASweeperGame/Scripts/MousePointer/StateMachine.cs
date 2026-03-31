@@ -171,11 +171,11 @@ public class DraggingState : State
 
 public class ClickingBombsState : State
 {
-    Bomb _targetBomb;
+    Mine _targetBomb;
     public ClickingBombsState(StateMachine mousePointer) : base(mousePointer) { }
     public override void Enter()
     {
-        Bomb[] bombs = GameObject.FindObjectsByType<Bomb>(FindObjectsSortMode.None);
+        Mine[] bombs = GameObject.FindObjectsByType<Mine>(FindObjectsSortMode.None);
         int randomIndex = Random.Range(0, bombs.Length);
         _targetBomb = bombs[randomIndex];
 
