@@ -1,28 +1,53 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-
 
 public enum MousePointerState { Roaming, Dragging, ClickingBombs }
 public abstract class State
 {
     protected StateMachine stateMachine;
 
+    private Vector2 _velocity;
+
     public State(StateMachine stateMachine) { this.stateMachine = stateMachine; }
 
-    public virtual void Enter() { }
-    public virtual void Update() { }
+    protected bool MoveToward(Vector2 target, float smoothTime, float maxSpeed, float arrivalThreshold)
+    {
+        Vector2 current = stateMachine.Transform.position;
+        Vector2 newPos = Vector2.SmoothDamp(current, target, ref _velocity, smoothTime, maxSpeed);
+        stateMachine.Transform.position = newPos;
+
+        if (Vector2.Distance(newPos, target) < arrivalThreshold)
+        {
+            _velocity = Vector2.zero;
+            return true;
+        }
+        return false;
+    }
+
+    protected void ResetVelocity() => _velocity = Vector2.zero;
+
+
+    public virtual void Enter() 
+    {
+    }
+    public virtual void Update() 
+    { 
+    
+    }
     public virtual void FixedUpdate() { }
     public virtual void Exit() { }
 }
 
 public class RoamingState : State
 {
-    private Vector2[] roamingPoints;
-    private int currentPointIndex;
-    private const float arrivalThreshold = 0.6f;
-    private const float smoothTime = 0.5f;
-    private const float maxSpeed = 3.5f;
-    private Vector2 screenLeftBottom = new Vector2(-8.2f, -4.3f);
-    private Vector2 screenBoundsTopRight = new Vector2(8.2f, 4.3f);
+    private Vector2[] _roamingPoints;
+    private int _currentPointIndex;
+    private const float _arrivalThreshold = 0.6f;
+    private const float _smoothTime = 0.5f;
+    private const float _maxSpeed = 3.5f;
+    private Vector2 _screenLeftBottom = new Vector2(-8.2f, -4.3f);
+    private Vector2 _screenBoundsTopRight = new Vector2(8.2f, 4.3f);
 
     private Vector2 velocity; // SmoothDamp tracks this internally
 
@@ -31,18 +56,18 @@ public class RoamingState : State
     public override void Enter()
     {
         int numberOfRoamingPoints = Random.Range(1, 3);
-        roamingPoints = new Vector2[numberOfRoamingPoints];
+        _roamingPoints = new Vector2[numberOfRoamingPoints];
         for (int i = 0; i < numberOfRoamingPoints; i++)
         {
-            Vector2 lastPoint = i == 0 ? (Vector2)stateMachine.Transform.position : roamingPoints[i - 1];
+            Vector2 lastPoint = i == 0 ? (Vector2)stateMachine.Transform.position : _roamingPoints[i - 1];
             Vector2 randomPoint;
             do
             {
                 randomPoint = new Vector2(
-                    Random.Range(screenLeftBottom.x, screenBoundsTopRight.x),
-                    Random.Range(screenLeftBottom.y, screenBoundsTopRight.y));
+                    Random.Range(_screenLeftBottom.x, _screenBoundsTopRight.x),
+                    Random.Range(_screenLeftBottom.y, _screenBoundsTopRight.y));
             } while (Vector2.Distance(lastPoint, randomPoint) < 8f);
-            roamingPoints[i] = randomPoint;
+            _roamingPoints[i] = randomPoint;
         }
 
         velocity = Vector2.zero;
@@ -50,26 +75,21 @@ public class RoamingState : State
 
     public override void Update()
     {
-        if (roamingPoints == null || roamingPoints.Length == 0) return;
+        if (_roamingPoints == null || _roamingPoints.Length == 0) return;
 
-        Vector2 current = stateMachine.Transform.position;
-        Vector2 target = roamingPoints[currentPointIndex];
+        bool arrived = MoveToward(_roamingPoints[_currentPointIndex], _smoothTime, _maxSpeed, _arrivalThreshold);
 
-        Vector2 newPos = Vector2.SmoothDamp(current, target, ref velocity, smoothTime, maxSpeed);
-        stateMachine.Transform.position = newPos;
-
-        if (Vector2.Distance(newPos, target) < arrivalThreshold)
+        if (arrived)
         {
-            currentPointIndex++;
-            velocity = Vector2.zero; // reset so it eases in to the next point
-            if (currentPointIndex >= roamingPoints.Length)
+            _currentPointIndex++;
+            if (_currentPointIndex >= _roamingPoints.Length)
                 stateMachine.ChangeState(stateMachine.GetNewState());
         }
     }
 
     public override void Exit()
     {
-        roamingPoints = null;
+        _roamingPoints = null;
         velocity = Vector2.zero;
     }
 }
@@ -77,17 +97,65 @@ public class RoamingState : State
 public class DraggingState : State
 {
     public DraggingState(StateMachine mousePointer) : base(mousePointer) { }
+
+    private PopupWindow _targetPopup = null;
+    private bool _holdsPopup = false;
+    private Vector2 _popupDropoffPoint;
     public override void Enter()
     {
-        // Code to execute when entering dragging state
+        PopupWindow[] windows = GameObject.FindObjectsOfType<PopupWindow>();
+        List<PopupWindow> undraggedWindows = new List<PopupWindow>();
+
+        foreach (PopupWindow window in windows)
+        {
+            if (!window.HasBeenDragged)
+                undraggedWindows.Add(window);
+        }
+
+        if (undraggedWindows.Count < 0)
+            stateMachine.ChangeState(stateMachine.GetNewState());
+
+        _targetPopup = undraggedWindows[Random.Range(0, undraggedWindows.Count)];
+
     }
     public override void Update()
     {
-        // Code to execute while in dragging state
+        if (_targetPopup == null) return;
+
+        if (!_holdsPopup)
+        {
+            bool arrived = MoveToward(_targetPopup.transform.position, 0.1f, 10f, 0.5f);
+            if (arrived)
+            {
+                _holdsPopup = true;
+                FindPopupDropzone();
+
+                _targetPopup.transform.SetParent(stateMachine.Transform);
+            }
+        }
+        else
+        {
+            if(MoveToward(_popupDropoffPoint,0.1f, 2f, 0.5f))
+            {
+                _targetPopup.HasBeenDragged = true;
+                _targetPopup.transform.SetParent(null);
+                stateMachine.ChangeState(stateMachine.GetNewState());
+            }
+
+        }
     }
     public override void Exit()
     {
         // Code to execute when exiting dragging state
+    }
+
+    private void FindPopupDropzone()
+    {
+        _popupDropoffPoint = new Vector2(
+            Random.Range(stateMachine.PopupDropzone.position.x - stateMachine.PopupDropzone.localScale.x/2,
+                stateMachine.PopupDropzone.position.x + stateMachine.PopupDropzone.localScale.x/2),
+            Random.Range(stateMachine.PopupDropzone.position.y - stateMachine.PopupDropzone.localScale.y / 2,
+                stateMachine.PopupDropzone.position.y + stateMachine.PopupDropzone.localScale.y / 2));
     }
 }
 
@@ -96,7 +164,6 @@ public class ClickingBombsState : State
     public ClickingBombsState(StateMachine mousePointer) : base(mousePointer) { }
     public override void Enter()
     {
-        // Code to execute when entering clicking bombs state
     }
     public override void Update()
     {
@@ -117,6 +184,9 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private Transform _transform;
     public Transform Transform => _transform;
 
+    [SerializeField] private Transform _popupDropzoneTransform;
+    public Transform PopupDropzone => _popupDropzoneTransform;
+
     public void Start()
     {
         _currentState = new RoamingState(this);
@@ -135,7 +205,7 @@ public class StateMachine : MonoBehaviour
         MousePointerState randomChoice = (MousePointerState)Random.Range(0, 2);
 
 
-        return new RoamingState(this);
+        return new DraggingState(this);
 
         //switch(randomChoice)
         //{
