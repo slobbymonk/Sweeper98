@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaae9aa352d0e2345bfe0ddee1b23b31, type: 3}
+  m_Name: PU_FreeRam
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
+  _frames:
+  - Duration: 0.1
+    Sprite: {fileID: 4780995041263824621, guid: be5b17c8528fffd4abc743b74f15d747, type: 3}
+  - Duration: 0.1
+    Sprite: {fileID: -1295594659, guid: be5b17c8528fffd4abc743b74f15d747, type: 3}
