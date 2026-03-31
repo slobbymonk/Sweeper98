@@ -61,7 +61,9 @@ public class MineGrabber : MonoBehaviour
 
     private void AimAtMouse()
     {
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(_mousePositionReference.action.ReadValue<Vector2>());
+        Vector2 screenPos = _mousePositionReference.action.ReadValue<Vector2>();
+        Vector3 screenPos3D = new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z);
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(screenPos3D);
         Vector2 direction = mouseWorld - _rotationPosition.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         _rotationPosition.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
