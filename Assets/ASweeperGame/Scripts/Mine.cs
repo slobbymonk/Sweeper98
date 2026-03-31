@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Mine : MonoBehaviour
 {
     private CircleCutter _circleCutter;
     private SpriteCutter _spriteCutter;
