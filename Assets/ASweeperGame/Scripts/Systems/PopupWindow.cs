@@ -18,7 +18,9 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     void Awake()
     {
         BoxCollider = GetComponent<BoxCollider2D>();
-
+    }
+    void Start()
+    {
         RenderingOrder = MaskOutManager.Instance.GetRenderingOrder();
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
         _contentSpriteRenderer.sortingOrder = RenderingOrder;
