@@ -1,7 +1,6 @@
 using Clipper2Lib;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CircleCutter : MonoBehaviour
 {
@@ -22,7 +21,7 @@ public class CircleCutter : MonoBehaviour
         for (int i = 0; i < windows.Count; i++)
         {
             // This needs to be a better check
-            if (Vector3.Distance(_circleCenter, windows[i].gameObject.transform.position) / 2 > _circleRadius) continue;
+            //if (Vector3.Distance(_circleCenter, windows[i].gameObject.transform.position) / 2 > _circleRadius) continue;
 
             BoxCollider2D box = windows[i].BoxCollider;
             Vector2 size = box.size;
@@ -36,14 +35,15 @@ public class CircleCutter : MonoBehaviour
             boxPath.Add(new PointD(offset.x - size.x / 2, offset.y + size.y / 2));
 
             Vector2 localCircleCenter = box.transform.InverseTransformPoint(_circleCenter);
+            Vector3 scale = box.transform.lossyScale;
 
             PathD circlePath = new PathD();
             for (int j = 0; j < _circleResolution; j++)
             {
                 float angle = j * Mathf.PI * 2 / _circleResolution;
                 circlePath.Add(new PointD(
-                    localCircleCenter.x + _circleRadius * Mathf.Cos(angle),
-                    localCircleCenter.y + _circleRadius * Mathf.Sin(angle)
+                    localCircleCenter.x + (_circleRadius / scale.x) * Mathf.Cos(angle),
+                    localCircleCenter.y + (_circleRadius / scale.y) * Mathf.Sin(angle)
                 ));
             }
 
