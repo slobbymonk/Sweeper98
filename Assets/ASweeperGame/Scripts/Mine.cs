@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Mine : MonoBehaviour
 {
     private CircleCutter _circleCutter;
     private SpriteCutter _spriteCutter;
     [SerializeField] float _circleRadius = 1f;
+    [SerializeField] Transform _explosionRange;
 
     private void Awake()
     {
@@ -23,7 +24,8 @@ public class Bomb : MonoBehaviour
             if (!colliders[i].gameObject.TryGetComponent<PopupWindow>(out var window)) continue;
 
             _circleCutter.Cut(window, _circleRadius);
-            _spriteCutter.Cut();
+            int renderingOrder = window.RenderingOrder;
+            _spriteCutter.Cut(window, renderingOrder, _explosionRange);
         }
     }
 

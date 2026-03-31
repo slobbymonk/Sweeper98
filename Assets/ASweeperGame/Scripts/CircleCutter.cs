@@ -14,20 +14,48 @@ public class CircleCutter : MonoBehaviour
 
     public void Cut(PopupWindow window, float radius)
     {
-        BoxCollider2D box = window.BoxCollider;
-        Vector2 size = box.size;
-        Vector2 offset = box.offset;
+        Collider2D collider = window.GetComponent<Collider2D>();
+        if (collider == null) return;
 
-        // Build box path
-        PathD boxPath = new PathD();
-        boxPath.Add(new PointD(offset.x - size.x / 2, offset.y - size.y / 2));
-        boxPath.Add(new PointD(offset.x + size.x / 2, offset.y - size.y / 2));
-        boxPath.Add(new PointD(offset.x + size.x / 2, offset.y + size.y / 2));
-        boxPath.Add(new PointD(offset.x - size.x / 2, offset.y + size.y / 2));
+        Transform colliderTransform = collider.transform;
+        Vector2 localCircleCenter = colliderTransform.InverseTransformPoint(_circleCenter);
+        Vector3 scale = colliderTransform.lossyScale;
 
-        Vector2 localCircleCenter = box.transform.InverseTransformPoint(_circleCenter);
-        Vector3 scale = box.transform.lossyScale;
+        // Build subject path from whatever collider is present
+        PathsD subject = new PathsD();
 
+        if (collider is BoxCollider2D box)
+        {
+            Vector2 size = box.size;
+            Vector2 offset = box.offset;
+
+            PathD boxPath = new PathD
+            {
+                new PointD(offset.x - size.x / 2, offset.y - size.y / 2),
+                new PointD(offset.x + size.x / 2, offset.y - size.y / 2),
+                new PointD(offset.x + size.x / 2, offset.y + size.y / 2),
+                new PointD(offset.x - size.x / 2, offset.y + size.y / 2)
+            };
+            subject.Add(boxPath);
+        }
+        else if (collider is PolygonCollider2D poly)
+        {
+            for (int i = 0; i < poly.pathCount; i++)
+            {
+                Vector2[] polyPoints = poly.GetPath(i);
+                PathD path = new PathD();
+                foreach (Vector2 p in polyPoints)
+                    path.Add(new PointD(p.x, p.y));
+                subject.Add(path);
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"CircleCutter: unsupported collider type {collider.GetType().Name}");
+            return;
+        }
+
+        // Build circle path
         PathD circlePath = new PathD();
         for (int j = 0; j < _circleResolution; j++)
         {
@@ -39,27 +67,21 @@ public class CircleCutter : MonoBehaviour
         }
 
         // Subtract
-        PathsD solution = Clipper.Difference(
-            new PathsD { boxPath },
-            new PathsD { circlePath },
-            FillRule.NonZero
-        );
+        PathsD solution = Clipper.Difference(subject, new PathsD { circlePath }, FillRule.NonZero);
 
-        // Apply to PolygonCollider2D
-        GameObject windowGO = box.gameObject;
+        // Replace collider with PolygonCollider2D
+        GameObject windowGO = collider.gameObject;
+        Destroy(collider);
 
-        Destroy(box);
-        PolygonCollider2D poly = windowGO.AddComponent<PolygonCollider2D>();
-        poly.pathCount = solution.Count;
-
+        PolygonCollider2D result = windowGO.AddComponent<PolygonCollider2D>();
+        result.pathCount = solution.Count;
         for (int j = 0; j < solution.Count; j++)
         {
             Vector2[] points = new Vector2[solution[j].Count];
             for (int k = 0; k < solution[j].Count; k++)
-            {
                 points[k] = new Vector2((float)solution[j][k].x, (float)solution[j][k].y);
-            }
-            poly.SetPath(j, points);
+
+            result.SetPath(j, points);
         }
     }
 }
