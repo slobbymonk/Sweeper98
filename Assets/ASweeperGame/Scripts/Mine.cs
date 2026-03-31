@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mine : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class Mine : MonoBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
+            if (colliders[i].gameObject.TryGetComponent<PlayerController>(out var player))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
                 Destroy(closeButton.Window.gameObject);
