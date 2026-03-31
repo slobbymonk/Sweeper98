@@ -75,7 +75,8 @@ public class RoamingState : State
 
     public override void Update()
     {
-        if (_roamingPoints == null || _roamingPoints.Length == 0) return;
+        if (_roamingPoints == null || _roamingPoints.Length == 0)
+            stateMachine.ChangeState(stateMachine.GetNewState());
 
         bool arrived = MoveToward(_roamingPoints[_currentPointIndex], _smoothTime, _maxSpeed, _arrivalThreshold);
 
@@ -100,10 +101,12 @@ public class DraggingState : State
 
     private PopupWindow _targetPopup = null;
     private bool _holdsPopup = false;
+    private bool _skipToNext = false;
     private Vector2 _popupDropoffPoint;
+
     public override void Enter()
     {
-        PopupWindow[] windows = GameObject.FindObjectsOfType<PopupWindow>();
+        PopupWindow[] windows = GameObject.FindObjectsByType<PopupWindow>(FindObjectsSortMode.None);
         List<PopupWindow> undraggedWindows = new List<PopupWindow>();
 
         foreach (PopupWindow window in windows)
@@ -112,15 +115,26 @@ public class DraggingState : State
                 undraggedWindows.Add(window);
         }
 
-        if (undraggedWindows.Count < 0)
-            stateMachine.ChangeState(stateMachine.GetNewState());
+        if (undraggedWindows.Count == 0)
+        {
+            _skipToNext = true; // defer — never call ChangeState from Enter
+            return;
+        }
 
         _targetPopup = undraggedWindows[Random.Range(0, undraggedWindows.Count)];
-
     }
+
     public override void Update()
     {
-        if (_targetPopup == null) return;
+        if (_skipToNext)
+        {
+            _skipToNext = false;
+            stateMachine.ChangeState(stateMachine.GetNewState());
+            return;
+        }
+
+        if (_targetPopup == null)
+            stateMachine.ChangeState(stateMachine.GetNewState());
 
         if (!_holdsPopup)
         {
@@ -129,45 +143,54 @@ public class DraggingState : State
             {
                 _holdsPopup = true;
                 FindPopupDropzone();
-
                 _targetPopup.transform.SetParent(stateMachine.Transform);
             }
         }
         else
         {
-            if(MoveToward(_popupDropoffPoint,0.1f, 2f, 0.5f))
+            if (MoveToward(_popupDropoffPoint, 0.1f, 2f, 0.5f))
             {
                 _targetPopup.HasBeenDragged = true;
                 _targetPopup.transform.SetParent(null);
                 stateMachine.ChangeState(stateMachine.GetNewState());
             }
-
         }
     }
-    public override void Exit()
-    {
-        // Code to execute when exiting dragging state
-    }
+
+    public override void Exit() { }
 
     private void FindPopupDropzone()
     {
         _popupDropoffPoint = new Vector2(
-            Random.Range(stateMachine.PopupDropzone.position.x - stateMachine.PopupDropzone.localScale.x/2,
-                stateMachine.PopupDropzone.position.x + stateMachine.PopupDropzone.localScale.x/2),
+            Random.Range(stateMachine.PopupDropzone.position.x - stateMachine.PopupDropzone.localScale.x / 2,
+                         stateMachine.PopupDropzone.position.x + stateMachine.PopupDropzone.localScale.x / 2),
             Random.Range(stateMachine.PopupDropzone.position.y - stateMachine.PopupDropzone.localScale.y / 2,
-                stateMachine.PopupDropzone.position.y + stateMachine.PopupDropzone.localScale.y / 2));
+                         stateMachine.PopupDropzone.position.y + stateMachine.PopupDropzone.localScale.y / 2));
     }
 }
 
 public class ClickingBombsState : State
 {
+    Bomb _targetBomb;
     public ClickingBombsState(StateMachine mousePointer) : base(mousePointer) { }
     public override void Enter()
     {
+        Bomb[] bombs = GameObject.FindObjectsByType<Bomb>(FindObjectsSortMode.None);
+        int randomIndex = Random.Range(0, bombs.Length);
+        _targetBomb = bombs[randomIndex];
+
     }
     public override void Update()
     {
-        // Code to execute while in clicking bombs state
+        if(_targetBomb == null)
+            stateMachine.ChangeState(stateMachine.GetNewState());
+
+
+        if (MoveToward(_targetBomb.transform.position, 0.1f, 10f, 0.5f))
+        {
+             _targetBomb.Explode();
+            stateMachine.ChangeState(stateMachine.GetNewState());
+        }
     }
     public override void Exit()
     {
@@ -187,6 +210,11 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private Transform _popupDropzoneTransform;
     public Transform PopupDropzone => _popupDropzoneTransform;
 
+    public void Init(Transform dropzone)
+    {
+        _popupDropzoneTransform = dropzone;
+    }
+
     public void Start()
     {
         _currentState = new RoamingState(this);
@@ -202,25 +230,31 @@ public class StateMachine : MonoBehaviour
 
     public State GetNewState()
     {
-        MousePointerState randomChoice = (MousePointerState)Random.Range(0, 2);
+       float rand = Random.Range(0f, 1f);
+        MousePointerState randomChoice;
+
+        if(rand < 0.8f)
+            randomChoice = MousePointerState.Roaming;
+        else if (rand < 0.95f)
+            randomChoice = MousePointerState.ClickingBombs;
+        else
+            randomChoice = MousePointerState.Dragging;
 
 
-        return new DraggingState(this);
 
-        //switch(randomChoice)
-        //{
-        //    case MousePointerState.Roaming: 
-        //        return new DraggingState(this);
-        //        break;
-        //    case MousePointerState.Dragging: 
-        //        return new ClickingBombsState(this);
-        //        break;
-        //    case MousePointerState.ClickingBombs:
-        //        returnnew RoamingState(this);
-        //        break;
-        //    default:
-        //        throw new System.NotImplementedException();
-        //};
+
+        switch (randomChoice)
+        {
+            case MousePointerState.ClickingBombs: 
+                //return new ClickingBomState(this);
+                //break;
+            case MousePointerState.Dragging: 
+                return new DraggingState(this);
+            case MousePointerState.Roaming:
+                return new RoamingState(this);
+            default:
+                throw new System.NotImplementedException();
+        };
     }
 
     public void Update()
