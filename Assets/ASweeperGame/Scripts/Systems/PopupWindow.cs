@@ -25,8 +25,8 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     {
         RenderingOrder = MaskOutManager.Instance.GetRenderingOrder();
         _closeButton.sortingOrder = RenderingOrder + 1;
+        _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
-        _contentSpriteRenderer.sortingOrder = RenderingOrder;
     }
 
     void OnDestroy()

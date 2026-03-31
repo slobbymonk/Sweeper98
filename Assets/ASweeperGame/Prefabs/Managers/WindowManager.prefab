@@ -352,10 +352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bc91c5781f0a340b53b91d65ef7cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupWindowManager
-  _popupTrySpawnTime: 0
+  _popupTrySpawnTime: 5
   _popupWindows: []
   _popupPrefab:
-  - {fileID: 1526033643912789038, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+  - {fileID: 6374611876337593467, guid: 2580b2c0ee346fb43a1979b46581deb2, type: 3}
+  - {fileID: 272151496586702418, guid: 4c31244b966489c4fae1d79280e14644, type: 3}
   _popupSpawnableArea:
   - {fileID: 7650286476663861279}
   - {fileID: 8970264475449723582}
