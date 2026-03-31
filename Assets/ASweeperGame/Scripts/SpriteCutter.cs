@@ -11,9 +11,9 @@ public class SpriteCutter : MonoBehaviour
         _mask.enabled = false;
     }
 
-    [Button]
     public void Cut()
     {
         _mask.enabled = true;
+        transform.parent = null;
     }
 }
