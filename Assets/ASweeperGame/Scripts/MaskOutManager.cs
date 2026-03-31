@@ -2,7 +2,7 @@
 
 public class MaskOutManager : MonoBehaviour
 {
-    private int _currentIndex = 5;
+    private int _currentIndex = 3;
 
     public static MaskOutManager Instance;
 
@@ -13,6 +13,7 @@ public class MaskOutManager : MonoBehaviour
 
     public int GetRenderingOrder()
     {
-        return _currentIndex++;
+        _currentIndex += 2;
+        return _currentIndex;
     }
 }
