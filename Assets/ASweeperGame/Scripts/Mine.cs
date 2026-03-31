@@ -8,10 +8,13 @@ public class Mine : MonoBehaviour
     [SerializeField] float _circleRadius = 1f;
     [SerializeField] Transform _explosionRange;
 
+    public Rigidbody2D Rb { get; private set; }
+
     private void Awake()
     {
         _circleCutter = GetComponent<CircleCutter>();
         _spriteCutter = GetComponent<SpriteCutter>();
+        Rb = GetComponent<Rigidbody2D>();
     }
 
     [Button]

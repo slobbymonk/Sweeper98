@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,8 +13,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
 
     [Header("Input")]
-    public Vector2 MoveInput;
-    [SerializeField] private InputActions _input;
 
     [Header("Assignables")]
     public Transform _orientation;
@@ -23,40 +22,14 @@ public class PlayerController : MonoBehaviour
         _rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
     private void FixedUpdate()
     {
         Movement();
     }
-
-    public void OnEnable()
-    {
-        _input = new InputActions();
-        _input.Player.Enable();
-        _input.Player.Move.performed += SetMove;
-        _input.Player.Move.canceled += SetMove;
-    }
-
-    public void OnDisable()
-    {
-        _input.Player.Move.performed -= SetMove;
-        _input.Player.Move.canceled -= SetMove;
-        _input.Player.Disable();
-    }
-
-    private void SetMove(InputAction.CallbackContext ctx)
-    {
-        MoveInput = ctx.ReadValue<Vector2>();
-    }
-
     private void Movement()
     {
-        float x = MoveInput.x;
-        float y = MoveInput.y;
+        float x = InputManager.Instance.MoveInput.x;
+        float y = InputManager.Instance.MoveInput.y;
 
         Vector2 mag = _rb.linearVelocity;
         float xMag = mag.x, yMag = mag.y;
