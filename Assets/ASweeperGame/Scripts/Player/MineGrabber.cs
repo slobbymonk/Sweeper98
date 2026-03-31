@@ -59,14 +59,16 @@ public class MineGrabber : MonoBehaviour
         _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos + new Vector3(offsetX, offsetY, 0f);
     }
 
+    private Vector2 _aimDirection;
     private void AimAtMouse()
     {
-        Vector2 screenPos = _mousePositionReference.action.ReadValue<Vector2>();
-        Vector3 screenPos3D = new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z);
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(screenPos3D);
-        Vector2 direction = mouseWorld - _rotationPosition.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        _rotationPosition.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+        Vector2 screenPos = Mouse.current.position.ReadValue();
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z));
+        Vector2 direction = (Vector2)(mouseWorld - _rotationPosition.position);
+        float angleRad = Mathf.Atan2(direction.y, direction.x);
+        float angleDeg = angleRad * Mathf.Rad2Deg;
+        _rotationPosition.rotation = Quaternion.Euler(0f, 0f, angleDeg);
+        _aimDirection = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
 
     private void BeginCharge()
@@ -87,7 +89,7 @@ public class MineGrabber : MonoBehaviour
         _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos;
         _currentlyHeldMine.transform.parent = null;
         _currentlyHeldMine.Rb.bodyType = RigidbodyType2D.Dynamic;
-        _currentlyHeldMine.Rb.AddForce(transform.up * force * Time.deltaTime, ForceMode2D.Impulse);
+        _currentlyHeldMine.Rb.AddForce(_aimDirection * force * Time.deltaTime, ForceMode2D.Impulse);
 
         _spriteRenderer.sprite = _defaultSprite;
         _currentlyHeldMine = null;
