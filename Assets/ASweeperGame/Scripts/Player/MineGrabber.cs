@@ -1,41 +1,126 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MineGrabber : MonoBehaviour
 {
     private Mine _currentlyHeldMine;
-
     [SerializeField] private Sprite _bombHoldingSprite;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    [Header("Launch")]
+    [SerializeField] private float _minLaunchForce = 500f;
+    [SerializeField] private float _maxLaunchForce = 2000f;
+    [SerializeField] private float _maxChargeTime = 2f;
+    [SerializeField] private Transform _rotationPosition;
+    [SerializeField] private Transform _holdPosition;
+
+    [Header("Shake")]
+    [SerializeField] private float _maxShakeAmount = 0.15f;
+    [SerializeField] private float _shakeSpeed = 30f;
+
     private Sprite _defaultSprite;
+    private bool _isCoolingDown;
+    private bool _isCharging;
+    private float _chargeTime;
+    private Vector3 _heldMineBaseLocalPos;
+
+    [SerializeField] private InputActionReference _mousePositionReference;
 
     private void Awake()
     {
         _defaultSprite = _spriteRenderer.sprite;
     }
 
-    void LaunchBomb()
+    private void Start()
+    {
+        InputManager.Instance.OnLaunched += BeginCharge;
+        InputManager.Instance.OnLaunchReleased += ReleaseLaunch;
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Instance.OnLaunched -= BeginCharge;
+        InputManager.Instance.OnLaunchReleased -= ReleaseLaunch;
+    }
+
+    private void Update()
+    {
+        AimAtMouse();
+
+        if (!_isCharging || _currentlyHeldMine == null) return;
+
+        _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, _maxChargeTime);
+
+        float chargeRatio = _chargeTime / _maxChargeTime;
+        float shakeAmount = chargeRatio * _maxShakeAmount;
+        float offsetX = Mathf.Sin(Time.time * _shakeSpeed) * shakeAmount;
+        float offsetY = Mathf.Cos(Time.time * _shakeSpeed * 1.3f) * shakeAmount;
+        _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos + new Vector3(offsetX, offsetY, 0f);
+    }
+
+    private void AimAtMouse()
+    {
+        Vector2 screenPos = _mousePositionReference.action.ReadValue<Vector2>();
+        Vector3 screenPos3D = new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z);
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(screenPos3D);
+        Vector2 direction = mouseWorld - _rotationPosition.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _rotationPosition.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+    }
+
+    private void BeginCharge()
+    {
+        if (_currentlyHeldMine == null) return;
+        _isCharging = true;
+        _chargeTime = 0f;
+    }
+
+    private void ReleaseLaunch()
     {
         if (_currentlyHeldMine == null) return;
 
-        // Launch logic
+        float chargeRatio = _chargeTime / _maxChargeTime;
+        float force = Mathf.Lerp(_minLaunchForce, _maxLaunchForce, chargeRatio);
+
+        // Reset mine position before launch so it doesn't fire from a shaken offset
+        _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos;
+        _currentlyHeldMine.transform.parent = null;
+        _currentlyHeldMine.Rb.bodyType = RigidbodyType2D.Dynamic;
+        _currentlyHeldMine.Rb.AddForce(transform.up * force * Time.deltaTime, ForceMode2D.Impulse);
 
         _spriteRenderer.sprite = _defaultSprite;
         _currentlyHeldMine = null;
+        _isCharging = false;
+        _chargeTime = 0f;
+
+        StartCoroutine(HandleCooldown());
+    }
+
+    IEnumerator HandleCooldown()
+    {
+        _isCoolingDown = true;
+        yield return new WaitForSeconds(.2f);
+        _isCoolingDown = false;
     }
 
     public bool TryHoldMine(Mine mine)
     {
-        if(mine != null) return false;
+        if (_currentlyHeldMine != null) return false;
         _currentlyHeldMine = mine;
         return true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.TryGetComponent<Mine>(out var mine))
+        if (_isCoolingDown) return;
+        if (other.gameObject.TryGetComponent<Mine>(out var mine))
         {
             if (!TryHoldMine(mine)) return;
-            mine.transform.parent = transform;
+            mine.transform.parent = _holdPosition;
+            mine.transform.localPosition = Vector3.zero;
+            _heldMineBaseLocalPos = Vector3.zero;
+            mine.Rb.bodyType = RigidbodyType2D.Kinematic;
             _spriteRenderer.sprite = _bombHoldingSprite;
         }
     }

@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class CircleCutter : MonoBehaviour
 {
-    [SerializeField] Vector2 _circleCenter;
     [SerializeField] int _circleResolution = 32;
-
-    private void Update()
-    {
-        _circleCenter = transform.position;
-    }
 
     public void Cut(PopupWindow window, float radius)
     {
@@ -18,7 +12,7 @@ public class CircleCutter : MonoBehaviour
         if (collider == null) return;
 
         Transform colliderTransform = collider.transform;
-        Vector2 localCircleCenter = colliderTransform.InverseTransformPoint(_circleCenter);
+        Vector2 localCircleCenter = colliderTransform.InverseTransformPoint(transform.position);
         Vector3 scale = colliderTransform.lossyScale;
 
         // Build subject path from whatever collider is present
