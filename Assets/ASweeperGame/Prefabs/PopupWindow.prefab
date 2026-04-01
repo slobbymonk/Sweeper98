@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4187885035070170154}
   - component: {fileID: 2941076830099897992}
   - component: {fileID: -4035862919834748218}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PopupWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,20 @@ MonoBehaviour:
   _bgSpriteRenderer: {fileID: 4395681475403711558}
   _contentSpriteRenderer: {fileID: 4035910875041992373}
   _closeButton: {fileID: 4634413300901219338}
+  _spawnSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _closeSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!61 &2941076830099897992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5863162317447246606}
   - component: {fileID: 4035910875041992373}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +244,7 @@ GameObject:
   - component: {fileID: 4634413300901219338}
   - component: {fileID: 5232545657712154729}
   - component: {fileID: 4115384179800661686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: XButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +395,7 @@ GameObject:
   - component: {fileID: 4179995686975971407}
   - component: {fileID: 3433429079001585204}
   - component: {fileID: 5717148295378172392}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8958661406197841948}
   - component: {fileID: 4395681475403711558}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +587,7 @@ GameObject:
   - component: {fileID: 9175558689009595832}
   - component: {fileID: 3534000809232323994}
   - component: {fileID: 6355752684662952559}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

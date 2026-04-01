@@ -1,6 +1,12 @@
 using UnityEngine;
 using FMODUnity;
 
+public enum MineState
+{
+    InMineSweeper,
+    Interactible
+}
+
 public class Mine : MonoBehaviour
 {
     private CircleCutter _circleCutter;
@@ -11,6 +17,13 @@ public class Mine : MonoBehaviour
     [SerializeField] EventReference _explosionSound;
     [SerializeField] EventReference _bounceOffEdgeSound;
 
+    [SerializeField] SpriteRenderer _spriteRenderer;
+    public bool IsInteractible = false;
+    [SerializeField] int _mineSweeperLayer;
+    [SerializeField] int _interactibleLayer;
+    [SerializeField] Sprite _interactibleMine;
+    [SerializeField] Sprite _uninteractibleMine;
+
     public Rigidbody2D Rb { get; private set; }
 
     private void Awake()
@@ -18,6 +31,9 @@ public class Mine : MonoBehaviour
         _circleCutter = GetComponent<CircleCutter>();
         _spriteCutter = GetComponent<SpriteCutter>();
         Rb = GetComponent<Rigidbody2D>();
+
+        gameObject.layer = _mineSweeperLayer;
+        _spriteRenderer.sprite = _uninteractibleMine;
     }
 
     [Button]
@@ -71,6 +87,13 @@ public class Mine : MonoBehaviour
         {
             Explode();
         }
+    }
+
+    public void GrabMine()
+    {
+        IsInteractible = true;
+        _spriteRenderer.sprite = _interactibleMine;
+        gameObject.layer = _interactibleLayer;
     }
 
     private void OnDrawGizmosSelected()

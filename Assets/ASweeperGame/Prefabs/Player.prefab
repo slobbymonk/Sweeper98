@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6255980072417079436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -311,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939ca278bd225064299a616c4304c4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineGrabber
+  _mineHeldSprite: {fileID: 0}
+  _mineDefaultSprite: {fileID: 0}
   _minLaunchForce: 500
   _maxLaunchForce: 5000
   _maxChargeTime: 1.2
