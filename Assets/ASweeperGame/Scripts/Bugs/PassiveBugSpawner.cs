@@ -4,8 +4,19 @@ public class PassiveBugSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _bugPrefab;
     [SerializeField] private float _spawnInterval = 3f;
-
+    private float _originalSpawnInterval;
     private float _timer;
+
+    public void SetDifficultyScaler(float scaler)
+    {
+        _spawnInterval = _originalSpawnInterval / scaler;
+    }
+
+
+    private void Start()
+    {
+        _originalSpawnInterval = _spawnInterval;
+    }
 
     void Update()
     {
