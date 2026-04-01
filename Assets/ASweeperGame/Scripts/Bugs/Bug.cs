@@ -22,4 +22,10 @@ public class Bug : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
 }

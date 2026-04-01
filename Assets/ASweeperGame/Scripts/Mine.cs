@@ -36,6 +36,12 @@ public class Mine : MonoBehaviour
                 Destroy(closeButton.Window.gameObject);
                 continue;
             }
+            if (colliders[i].gameObject.TryGetComponent<Bug>(out var bug))
+            {
+                bug.Die();
+                continue;
+            }
+        
 
             if (!colliders[i].gameObject.TryGetComponent<PopupWindow>(out var window)) continue;
 
@@ -57,8 +63,10 @@ public class Mine : MonoBehaviour
             return;
         }
 
-        if(collision.gameObject.TryGetComponent<PopupWindow>(out var window) 
-            || collision.gameObject.TryGetComponent<Mine>(out var _))
+
+        if (collision.gameObject.TryGetComponent<PopupWindow>(out var window)
+            || collision.gameObject.TryGetComponent<Mine>(out var _)
+            || collision.gameObject.TryGetComponent<Bug>(out var _))
         {
             Explode();
         }
