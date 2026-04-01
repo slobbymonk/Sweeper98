@@ -15,11 +15,10 @@ public class Bug : MonoBehaviour
 
     void Update()
     {
-        Vector3 targetPosition = _playerController.transform.position;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, _speed * Time.deltaTime);
+        Vector3 direction = _playerController.transform.position - transform.position;
+        transform.position += direction.normalized * _speed * Time.deltaTime;
 
-        Vector3 direction = targetPosition - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg)-90f;
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
