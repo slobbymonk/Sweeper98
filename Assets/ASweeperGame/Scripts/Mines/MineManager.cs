@@ -15,7 +15,10 @@ public class BombManager : MonoBehaviour
 
     void Start()
     {
-        
+        SpawnBomb();
+        SpawnBomb();
+        SpawnBomb();
+        SpawnBomb();
     }
 
     // Update is called once per frame

@@ -1,6 +1,8 @@
 ﻿using FMODUnity;
 using System;
 using UnityEngine;
+using PrimeTween;
+using System.Collections;
 
 public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
 {
@@ -27,6 +29,10 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     }
     void Start()
     {
+        Vector2 windowScale = transform.localScale;
+        transform.localScale = windowScale * .5f;
+        Tween.Scale(transform, windowScale, .2f, Ease.OutBounce);
+
         RenderingOrder = MaskOutManager.Instance.GetRenderingOrder();
         _closeButton.sortingOrder = RenderingOrder + 1;
         _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
@@ -35,9 +41,17 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
         RuntimeManager.PlayOneShot(_spawnSound);
     }
 
-    void OnDestroy()
+    public void CloseWindow()
     {
+        StartCoroutine(CloseWindowAnimation());
+    }
+    IEnumerator CloseWindowAnimation()
+    {
+        yield return Tween.Scale(transform, Vector3.zero, .5f, Ease.InBounce);
+        
         RuntimeManager.PlayOneShot(_closeSound);
         OnDestroyed?.Invoke(this);
+
+        Destroy(gameObject);
     }
 }

@@ -12,7 +12,6 @@ public class PopupWindowManager : MonoBehaviour
     [SerializeField] private int _popupSpawnTimeRandomOffset;
     private float _timeSinceLastPopupSpawnAttempt = 0f;
 
-    // Replace type GameObject -> Popup interface object
     [SerializeField] private List<PopupWindow> _popupWindows = new List<PopupWindow>();
     public List<PopupWindow> PopupWindows => _popupWindows;
     [SerializeField] private GameObject[] _popupPrefab;
@@ -27,7 +26,9 @@ public class PopupWindowManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        TryToSpawnPopup();
+        TryToSpawnPopup();
+        TryToSpawnPopup();
     }
 
     public void Update()
