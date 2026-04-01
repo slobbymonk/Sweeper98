@@ -32,10 +32,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3348634267789085055}
   - {fileID: 8958661406197841948}
   - {fileID: 9172723122302816791}
   - {fileID: 5863162317447246606}
-  - {fileID: 3348634267789085055}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4187885035070170154
@@ -56,18 +56,18 @@ MonoBehaviour:
   _closeButton: {fileID: 4634413300901219338}
   _spawnSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -589950566
+      Data2: 1255291440
+      Data3: -1472544878
+      Data4: 2146314212
+    Path: event:/PopupWindowSpawning
   _closeSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -450990088
+      Data2: 1273769141
+      Data3: 1727892374
+      Data4: -1393452817
+    Path: event:/PopupWindowClose
 --- !u!61 &2941076830099897992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -381,7 +381,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!1 &3728124849249812135
 GameObject:
@@ -443,7 +443,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &3433429079001585204
 MonoBehaviour:
