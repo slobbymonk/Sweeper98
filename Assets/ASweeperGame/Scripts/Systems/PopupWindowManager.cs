@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class PopupWindowManager : MonoBehaviour
 {
     [SerializeField] private float _popupTrySpawnTime = 5f;
-    private float _originalSpawnInterval;
     [SerializeField] private int _popupSpawnTimeRandomOffset;
     private float _timeSinceLastPopupSpawnAttempt = 0f;
 
@@ -27,9 +26,6 @@ public class PopupWindowManager : MonoBehaviour
     }
     private void Start()
     {
-        _originalSpawnInterval = _popupTrySpawnTime;
-
-
         TryToSpawnPopup();
         TryToSpawnPopup();
         TryToSpawnPopup();
@@ -46,11 +42,6 @@ public class PopupWindowManager : MonoBehaviour
         }
     }
 
-
-    public void SetDifficultyScaler(float scaler)
-    {
-        _popupTrySpawnTime = _originalSpawnInterval / scaler;
-    }
     private void TryToSpawnPopup()
     {
         for (int i = 0; i < 5; i++)
