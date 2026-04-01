@@ -51,9 +51,9 @@ public class BombManager : MonoBehaviour
                 + new Vector2(-_bombSpawnArea.localScale.x / 2f, -_bombSpawnArea.localScale.y/2f)
                 + (Vector2)_bombSpawnArea.position;
 
-        } while (IsOverlappingExistingBomb(randomPosition) && attempts < 400);
+        } while (IsOverlappingExistingBomb(randomPosition) && attempts < 100);
         return randomPosition;
-    }
+    } 
     private void SpawnBomb()
     {
         Vector2 spawnPosition = GetRandomPositionInSpawnArea();

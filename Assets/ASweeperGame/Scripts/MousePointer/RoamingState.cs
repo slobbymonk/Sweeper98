@@ -22,12 +22,14 @@ public class RoamingState : State
         {
             Vector2 lastPoint = i == 0 ? (Vector2)stateMachine.Transform.position : _roamingPoints[i - 1];
             Vector2 randomPoint;
+            int attempts = 0;
             do
             {
+                attempts++;
                 randomPoint = new Vector2(
                     Random.Range(_screenLeftBottom.x, _screenBoundsTopRight.x),
                     Random.Range(_screenLeftBottom.y, _screenBoundsTopRight.y));
-            } while (Vector2.Distance(lastPoint, randomPoint) < 8f);
+            } while (Vector2.Distance(lastPoint, randomPoint) < 8f && attempts < 50);
             _roamingPoints[i] = randomPoint;
         }
 

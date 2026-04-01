@@ -40,7 +40,10 @@ public class DraggingState : State
         }
 
         if (_targetPopup == null)
-            stateMachine.ChangeState(stateMachine.GetNewState());
+        {
+             stateMachine.ChangeState(stateMachine.GetNewState());
+             return;
+        }
 
         if (!_holdsPopup)
         {
