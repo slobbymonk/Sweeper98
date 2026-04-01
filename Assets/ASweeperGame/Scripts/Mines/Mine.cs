@@ -1,5 +1,7 @@
 using UnityEngine;
 using FMODUnity;
+using TMPro;
+using PrimeTween;
 
 public enum MineState
 {
@@ -46,6 +48,10 @@ public class Mine : MonoBehaviour
             if (colliders[i].gameObject.TryGetComponent<PlayerHealth>(out var playerHealth))
             {
                 playerHealth.Die();
+            }
+            if (colliders[i].gameObject.TryGetComponent<TMP_Text>(out var text))
+            {
+                Destroy(text.gameObject);
             }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
@@ -94,6 +100,7 @@ public class Mine : MonoBehaviour
         IsInteractible = true;
         _spriteRenderer.sprite = _interactibleMine;
         gameObject.layer = _interactibleLayer;
+        Tween.PunchScale(transform, Vector3.one * 1.2f, .1f);
     }
 
     private void OnDrawGizmosSelected()

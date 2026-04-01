@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 8752173242267703996}
   - component: {fileID: 8493854605949854143}
   - component: {fileID: 6675314039703362517}
+  - component: {fileID: 8857672647902429350}
   - component: {fileID: 4687924926830348161}
   - component: {fileID: 57777333149907786}
   - component: {fileID: 5375515323392378668}
@@ -336,6 +337,20 @@ MonoBehaviour:
       Data3: -690557312
       Data4: -14124709
     Path: event:/Mine/LaunchMine
+--- !u!114 &8857672647902429350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112431138277131364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c212147ce469fb142aac10d3761401c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerEffects
+  _maxRotationOffset: -12
+  _visuals: {fileID: 481325000784841504}
 --- !u!114 &4687924926830348161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,7 +515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4164407384055882688}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -54,6 +54,7 @@ MonoBehaviour:
   _bgSpriteRenderer: {fileID: 4395681475403711558}
   _contentSpriteRenderer: {fileID: 4035910875041992373}
   _closeButton: {fileID: 4634413300901219338}
+  _textCanvas: {fileID: 4179995686975971407}
   _spawnSound:
     Guid:
       Data1: -589950566
@@ -587,6 +588,7 @@ GameObject:
   - component: {fileID: 9175558689009595832}
   - component: {fileID: 3534000809232323994}
   - component: {fileID: 6355752684662952559}
+  - component: {fileID: 5452569744604668141}
   m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -713,3 +715,49 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!61 &5452569744604668141
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860606508528142512}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.71}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 198.81, y: 10}
+  m_EdgeRadius: 0
