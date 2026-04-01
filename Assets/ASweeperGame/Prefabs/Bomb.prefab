@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de849ba2bccf6e488fab6fc54e16f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteCutter
-  _maskSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  _maskSprite: {fileID: 4104906389627056583, guid: 94321b5bc88ed2a4aaa564c1756a5ab4, type: 3}
 --- !u!50 &6743256173544008537
 Rigidbody2D:
   serializedVersion: 5
