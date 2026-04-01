@@ -475,7 +475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Developers
+  m_text: TheDevelopers.png
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59cc07f39b68a9245aacec8652659cd5, type: 2}
   m_sharedMaterial: {fileID: -5672232782447378903, guid: 59cc07f39b68a9245aacec8652659cd5, type: 2}
