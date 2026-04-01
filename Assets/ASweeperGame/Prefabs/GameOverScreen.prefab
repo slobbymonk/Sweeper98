@@ -10250,6 +10250,7 @@ MonoBehaviour:
       Data3: 23015316
       Data4: -1028539694
     Path: event:/Error
+  _glitchMaterial: {fileID: 2100000, guid: 572fa4a64fb16494495d90865b15e72c, type: 2}
 --- !u!1 &8214231936911661392
 GameObject:
   m_ObjectHideFlags: 0
