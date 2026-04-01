@@ -13,6 +13,7 @@ public class Mine : MonoBehaviour
 {
     private CircleCutter _circleCutter;
     private SpriteCutter _spriteCutter;
+    [SerializeField] float _playerKillRadius = 1f;
     [SerializeField] float _circleRadius = 1f;
     [SerializeField] Transform _explosionRange;
     [SerializeField] GameObject _explosion;
@@ -47,7 +48,8 @@ public class Mine : MonoBehaviour
         {
             if (colliders[i].gameObject.TryGetComponent<PlayerHealth>(out var playerHealth))
             {
-                playerHealth.Die();
+                if(Vector3.Distance(transform.position, colliders[i].transform.position) < _circleRadius)
+                    playerHealth.Die();
             }
             if (colliders[i].gameObject.TryGetComponent<TMP_Text>(out var text))
             {

@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 4104906389627056583, guid: 94321b5bc88ed2a4aaa564c1756a5ab4, type: 3}
   m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,7 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3303dcb2eb3cf4643ba862e9a967c031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  _circleRadius: 1
+  _playerKillRadius: 0.8
+  _circleRadius: 1.56
   _explosionRange: {fileID: 3825127617613290369}
   _explosion: {fileID: 789761889020663131, guid: c1c47904818aec045848f78722375012, type: 3}
   _explosionSound:
