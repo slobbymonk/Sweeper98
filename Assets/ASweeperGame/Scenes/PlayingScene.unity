@@ -1897,6 +1897,18 @@ PrefabInstance:
       propertyPath: _popupTrySpawnTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3629648843942587331, guid: 9a39f6b6912d1de4d87ff714d5029f79, type: 3}
+      propertyPath: _popupPrefab.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629648843942587331, guid: 9a39f6b6912d1de4d87ff714d5029f79, type: 3}
+      propertyPath: '_popupPrefab.Array.data[8]'
+      value: 
+      objectReference: {fileID: 272151496586702418, guid: ba7467b4ec585b5468a05f703002e6cc, type: 3}
+    - target: {fileID: 3629648843942587331, guid: 9a39f6b6912d1de4d87ff714d5029f79, type: 3}
+      propertyPath: _popupSpawnTimeRandomOffset
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4385684008045650588, guid: 9a39f6b6912d1de4d87ff714d5029f79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.78784
