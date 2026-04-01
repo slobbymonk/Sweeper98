@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{40cf01b6-33b5-45e3-b44a-d2e432b175ca}">
+		<property name="assetPath">
+			<value>PopupNotificationError/windows-10-error-sound.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.8473469387755102</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{686aecd4-b1fc-4320-be14-18751ed6db90}</destination>
+		</relationship>
+	</object>
+</objects>
