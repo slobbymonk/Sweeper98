@@ -50,6 +50,7 @@ public class Mine : MonoBehaviour
             _spriteCutter.Cut(window, renderingOrder, _explosionRange);
         }
 
+        ScreenShake.Instance.ShakeTarget("BombExplosion", .3f, .3f);
         Instantiate(_explosion, transform.position, Quaternion.identity);
         RuntimeManager.PlayOneShot(_explosionSound);
         Destroy(gameObject);
