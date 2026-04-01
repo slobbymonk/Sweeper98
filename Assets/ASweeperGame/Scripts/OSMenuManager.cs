@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class OSMenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _OSMenu;
+    [SerializeField] private RectTransform _OSMenu;
+    [SerializeField] private RectTransform _target;
     private bool _IsOpen = false;
 
     public void OpenMenu()
@@ -15,7 +16,7 @@ public class OSMenuManager : MonoBehaviour
         }
         else
         {
-            Tween.Scale(_OSMenu.transform, endValue: new Vector3(1f, 1f, 1f), duration: 0.5f, ease: Ease.OutBack);
+            Tween.UIAnchoredPosition(_OSMenu, endValue: new Vector3(71.4f, 118f, 0f), duration: 0.5f, ease: Ease.OutBack);
             _IsOpen = true;
 
         }
@@ -23,7 +24,7 @@ public class OSMenuManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        Tween.Scale(_OSMenu.transform, endValue: new Vector3(0f, 0f, 0f), duration: 0.5f, ease: Ease.OutBack);
+        Tween.UIAnchoredPosition(_OSMenu, endValue: new Vector3(71.4f, -110f, 0f), duration: 0.5f, ease: Ease.OutBack);
     }
 
     public void CloseGame()
