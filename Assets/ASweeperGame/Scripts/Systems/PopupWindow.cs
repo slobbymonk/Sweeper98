@@ -20,6 +20,7 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     public SpriteRenderer ContentSpriteRenderer => _contentSpriteRenderer;
 
     [SerializeField] private SpriteRenderer _closeButton;
+    [SerializeField] private Canvas _textCanvas;
 
     [SerializeField] private EventReference _spawnSound;
     [SerializeField] private EventReference _closeSound;
@@ -43,6 +44,7 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
         RenderingOrder = MaskOutManager.Instance.GetRenderingOrder();
         _closeButton.sortingOrder = RenderingOrder + 1;
         _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
+        _textCanvas.sortingOrder = RenderingOrder + 1;
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
     }
 

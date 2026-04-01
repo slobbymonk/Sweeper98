@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using TMPro;
 
 public enum MineState
 {
@@ -46,6 +47,10 @@ public class Mine : MonoBehaviour
             if (colliders[i].gameObject.TryGetComponent<PlayerHealth>(out var playerHealth))
             {
                 playerHealth.Die();
+            }
+            if (colliders[i].gameObject.TryGetComponent<TMP_Text>(out var text))
+            {
+                Destroy(text.gameObject);
             }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
