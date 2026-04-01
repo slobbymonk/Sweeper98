@@ -134,6 +134,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3758877603156326634}
   - component: {fileID: 1909186481574461176}
+  - component: {fileID: 3155514355487634213}
+  - component: {fileID: 3440077101199837900}
+  - component: {fileID: 1077863551386150354}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -170,3 +173,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StateMachine
   _transform: {fileID: 7014575503920729163}
   _popupDropzoneTransform: {fileID: 0}
+  _RoamingStateChance: 50
+  _ClickingBombsStateChance: 25
+  _DraggingStateChance: 25
+  _CustomStateChance: 0
+--- !u!114 &3155514355487634213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177551724247855924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48adc8d5e4b9c04b93721843add5d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseSpriteLogic
+  spriteRenderer: {fileID: 2748363481447331956}
+  _neutralSprite: {fileID: 6554736390298987251, guid: 5ca87fef519663541abc08fa7c5a60ee, type: 3}
+  _clickableSprite: {fileID: -4467497338040624881, guid: 104d55b68d6ec69439b67c8c71fed170, type: 3}
+  _grabReadeySprite: {fileID: -5725880295126183182, guid: bad1b9ffed343f1428db1dc7e2f5026d, type: 3}
+  _grabbingSprite: {fileID: -5109920612005206671, guid: 32cc745bc572c384ab51de03cc8656bd, type: 3}
+--- !u!61 &3440077101199837900
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177551724247855924}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.1260268, y: -0.11714569}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.27121493, y: 0.25206023}
+  m_EdgeRadius: 0
+--- !u!50 &1077863551386150354
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177551724247855924}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

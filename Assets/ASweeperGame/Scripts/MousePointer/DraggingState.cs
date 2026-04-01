@@ -60,7 +60,9 @@ public class DraggingState : State
                 FindPopupDropzone();
                 _targetPopup.transform.SetParent(stateMachine.Transform);
                 _targetPopup.GrabLogic();
+                stateMachine.gameObject.GetComponent<MouseSpriteLogic>().GrabAnim();
             }
+
         }
         else
         {
@@ -69,6 +71,7 @@ public class DraggingState : State
                 _targetPopup.HasBeenDragged = true;
                 _targetPopup.transform.SetParent(null);
                 stateMachine.ChangeState(stateMachine.GetNewState());
+                stateMachine.gameObject.GetComponent<MouseSpriteLogic>().StopGrabAnim();
             }
         }
     }
@@ -83,6 +86,8 @@ public class DraggingState : State
             Random.Range(stateMachine.PopupDropzone.position.y - stateMachine.PopupDropzone.localScale.y / 2,
                          stateMachine.PopupDropzone.position.y + stateMachine.PopupDropzone.localScale.y / 2));
     }
+
+
 }
 
 

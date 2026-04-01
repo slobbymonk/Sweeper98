@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.Collections.AllocatorManager;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
 
         Die();
     }
+
+
 
     private Dictionary<Collider2D, Vector2> _contactNormals = new Dictionary<Collider2D, Vector2>();
 
