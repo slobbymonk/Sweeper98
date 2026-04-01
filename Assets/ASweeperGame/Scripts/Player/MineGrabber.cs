@@ -31,6 +31,8 @@ public class MineGrabber : MonoBehaviour
     [SerializeField] EventReference _pickupMine;
     [SerializeField] EventReference _launchMine;
 
+    private bool _hasGrabbed;
+
     private void Awake()
     {
         _defaultSprite = _spriteRenderer.sprite;
@@ -118,6 +120,13 @@ public class MineGrabber : MonoBehaviour
         if (_currentlyHeldMine != null) return false;
         _currentlyHeldMine = mine;
         RuntimeManager.PlayOneShot(_pickupMine);
+
+        if (!_hasGrabbed)
+        {
+            PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold space.", 5);
+            _hasGrabbed = true;
+        }
+
         return true;
     }
 
