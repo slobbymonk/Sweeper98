@@ -148,13 +148,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8752173242267703996}
   - component: {fileID: 8493854605949854143}
-  - component: {fileID: 5375515323392378668}
   - component: {fileID: 6675314039703362517}
+  - component: {fileID: 4687924926830348161}
+  - component: {fileID: 5375515323392378668}
   - component: {fileID: 2630734020585836382}
   - component: {fileID: 3262357419952066521}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,6 +193,61 @@ MonoBehaviour:
   _maxSpeed: 10
   _counterMovement: 0.175
   _orientation: {fileID: 8752173242267703996}
+--- !u!114 &6675314039703362517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112431138277131364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939ca278bd225064299a616c4304c4c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MineGrabber
+  _bombHoldingSprite: {fileID: 509177481554914400, guid: c2488524abb77654ca513c92101b67c1, type: 3}
+  _spriteRenderer: {fileID: 5597013633290558718}
+  _minLaunchForce: 500
+  _maxLaunchForce: 5000
+  _maxChargeTime: 2
+  _rotationPosition: {fileID: 7666469502561621788}
+  _holdPosition: {fileID: 933965582368169930}
+  _maxShakeAmount: 0.15
+  _shakeSpeed: 30
+  _mousePositionReference: {fileID: 3495421219005435396, guid: 154311858bc7b3146a19acf2d5239fd3, type: 3}
+  _pickupMine:
+    Guid:
+      Data1: 185721462
+      Data2: 1301844136
+      Data3: -1409390203
+      Data4: 1655147223
+    Path: event:/Mine/PickupMine
+  _launchMine:
+    Guid:
+      Data1: -1578510227
+      Data2: 1127393872
+      Data3: -690557312
+      Data4: -14124709
+    Path: event:/Mine/LaunchMine
+--- !u!114 &4687924926830348161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112431138277131364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c692d936558ada449c4c9b88719aa28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  _deathSound:
+    Guid:
+      Data1: 363858938
+      Data2: 1099095505
+      Data3: 360190082
+      Data4: -520133134
+    Path: event:/Clippy/ClippyDeath
 --- !u!70 &5375515323392378668
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -229,28 +285,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.040623903, y: -0.016618848}
   m_Size: {x: 0.38182116, y: 0.9667623}
   m_Direction: 0
---- !u!114 &6675314039703362517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4112431138277131364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939ca278bd225064299a616c4304c4c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MineGrabber
-  _bombHoldingSprite: {fileID: 509177481554914400, guid: c2488524abb77654ca513c92101b67c1, type: 3}
-  _spriteRenderer: {fileID: 5597013633290558718}
-  _minLaunchForce: 500
-  _maxLaunchForce: 5000
-  _maxChargeTime: 2
-  _rotationPosition: {fileID: 7666469502561621788}
-  _holdPosition: {fileID: 933965582368169930}
-  _maxShakeAmount: 0.15
-  _shakeSpeed: 30
-  _mousePositionReference: {fileID: 3495421219005435396, guid: 154311858bc7b3146a19acf2d5239fd3, type: 3}
 --- !u!58 &2630734020585836382
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -313,7 +347,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &4164407384055882688
 GameObject:
   m_ObjectHideFlags: 0
