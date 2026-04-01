@@ -126,7 +126,7 @@ public class MineGrabber : MonoBehaviour
 
         if (!_hasGrabbed)
         {
-            PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold space.", 5);
+            PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold left mouse button.", 5);
             _hasGrabbed = true;
         }
 
