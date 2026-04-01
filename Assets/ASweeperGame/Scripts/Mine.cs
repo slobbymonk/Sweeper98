@@ -33,7 +33,7 @@ public class Mine : MonoBehaviour
             }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
-                Destroy(closeButton.Window.gameObject);
+                closeButton.Window.CloseWindow();
                 continue;
             }
             if (colliders[i].gameObject.TryGetComponent<Bug>(out var bug))
