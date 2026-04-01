@@ -10243,6 +10243,13 @@ MonoBehaviour:
   - {fileID: 5855076867895760596}
   - {fileID: 3196015821509065102}
   - {fileID: 1866728702245147551}
+  _errorPopupSound:
+    Guid:
+      Data1: -1288351237
+      Data2: 1120610134
+      Data3: 23015316
+      Data4: -1028539694
+    Path: event:/Error
 --- !u!1 &8214231936911661392
 GameObject:
   m_ObjectHideFlags: 0
