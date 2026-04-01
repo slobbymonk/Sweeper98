@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,11 @@ public class MineGrabber : MonoBehaviour
     private Vector3 _heldMineBaseLocalPos;
 
     [SerializeField] private InputActionReference _mousePositionReference;
+
+    [SerializeField] EventReference _pickupMine;
+    [SerializeField] EventReference _launchMine;
+
+    private bool _hasGrabbed;
 
     private void Awake()
     {
@@ -89,12 +95,15 @@ public class MineGrabber : MonoBehaviour
         _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos;
         _currentlyHeldMine.transform.parent = null;
         _currentlyHeldMine.Rb.bodyType = RigidbodyType2D.Dynamic;
+        _currentlyHeldMine.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         _currentlyHeldMine.Rb.AddForce(_aimDirection * force * Time.deltaTime, ForceMode2D.Impulse);
 
         _spriteRenderer.sprite = _defaultSprite;
         _currentlyHeldMine = null;
         _isCharging = false;
         _chargeTime = 0f;
+
+        RuntimeManager.PlayOneShot(_launchMine);
 
         StartCoroutine(HandleCooldown());
     }
@@ -110,6 +119,14 @@ public class MineGrabber : MonoBehaviour
     {
         if (_currentlyHeldMine != null) return false;
         _currentlyHeldMine = mine;
+        RuntimeManager.PlayOneShot(_pickupMine);
+
+        if (!_hasGrabbed)
+        {
+            PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold space.", 5);
+            _hasGrabbed = true;
+        }
+
         return true;
     }
 
@@ -123,6 +140,7 @@ public class MineGrabber : MonoBehaviour
             mine.transform.localPosition = Vector3.zero;
             _heldMineBaseLocalPos = Vector3.zero;
             mine.Rb.bodyType = RigidbodyType2D.Kinematic;
+            mine.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             _spriteRenderer.sprite = _bombHoldingSprite;
         }
     }

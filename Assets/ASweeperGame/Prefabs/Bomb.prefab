@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4464882783062760480}
   m_Layer: 7
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,7 +213,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.89, y: 0.295, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3825127617613290369}
@@ -234,6 +234,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
   _circleRadius: 1
   _explosionRange: {fileID: 3825127617613290369}
+  _explosion: {fileID: 789761889020663131, guid: c1c47904818aec045848f78722375012, type: 3}
+  _explosionSound:
+    Guid:
+      Data1: -1683000307
+      Data2: 1322892145
+      Data3: 1076975767
+      Data4: 380004408
+    Path: event:/Mine/MineExplosion
+  _bounceOffEdgeSound:
+    Guid:
+      Data1: 1929870201
+      Data2: 1102149373
+      Data3: -2091441523
+      Data4: 590522622
+    Path: event:/Mine/MineBouncingOffEdge
 --- !u!114 &2215390622059567094
 MonoBehaviour:
   m_ObjectHideFlags: 0

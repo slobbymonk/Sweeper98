@@ -15,6 +15,8 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     [SerializeField] private SpriteRenderer _contentSpriteRenderer;
     public SpriteRenderer ContentSpriteRenderer => _contentSpriteRenderer;
 
+    [SerializeField] private SpriteRenderer _closeButton;
+
     void Awake()
     {
         BoxCollider = GetComponent<BoxCollider2D>();
@@ -22,7 +24,13 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     void Start()
     {
         RenderingOrder = MaskOutManager.Instance.GetRenderingOrder();
+        _closeButton.sortingOrder = RenderingOrder + 1;
+        _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
-        _contentSpriteRenderer.sortingOrder = RenderingOrder;
+    }
+
+    void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
     }
 }
