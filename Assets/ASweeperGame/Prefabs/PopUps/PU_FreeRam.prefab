@@ -84,6 +84,26 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5080054435366977519, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080054435366977519, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 156.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436883318627854020, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_text
+      value: DownloadRam.exe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436883318627854020, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436883318627854020, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8782665029303873933, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.753

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1526033643912789038, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_Name
-      value: PU_Mail
+      value: PU_Lemons
       objectReference: {fileID: 0}
     - target: {fileID: 1646200490312417964, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4035910875041992373, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6159404662802993988, guid: 5551f22fdaf010c4db2afb935905b625, type: 3}
+      objectReference: {fileID: -920325473152429858, guid: 089483ebc29a5184cbeae6f499b16602, type: 3}
     - target: {fileID: 4035910875041992373, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6436883318627854020, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_text
-      value: Mail
+      value: LimitlessLemons.com
       objectReference: {fileID: 0}
     - target: {fileID: 6436883318627854020, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd74fbe1b92665b498d13b6d204f3db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSheetAnimator
-  _currentAnimation: {fileID: 0}
+  _currentAnimation: {fileID: 11400000, guid: c2c1042543f99b342826cd96ffe90c6a, type: 2}
   _type: 0
   _loop: 1
   _endAnimationType: 0
