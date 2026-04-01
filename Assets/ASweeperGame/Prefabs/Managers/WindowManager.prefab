@@ -362,6 +362,7 @@ MonoBehaviour:
   - {fileID: 272151496586702418, guid: e90cb2bfda7b87b448bfe107ca4a2b26, type: 3}
   - {fileID: 272151496586702418, guid: ba7467b4ec585b5468a05f703002e6cc, type: 3}
   - {fileID: 272151496586702418, guid: 5416a8b3aea6dd940b695c2fd36e8da6, type: 3}
+  - {fileID: 272151496586702418, guid: d0225f47b009cba43a9ccafb7913cb36, type: 3}
   _popupSpawnableArea:
   - {fileID: 7650286476663861279}
   - {fileID: 8970264475449723582}
