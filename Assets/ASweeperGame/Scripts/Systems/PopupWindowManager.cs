@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class PopupWindowManager : MonoBehaviour
 {
     [SerializeField] private float _popupTrySpawnTime = 5f;
+    [SerializeField] private int _popupSpawnTimeRandomOffset;
     private float _timeSinceLastPopupSpawnAttempt = 0f;
 
     // Replace type GameObject -> Popup interface object
@@ -34,7 +35,8 @@ public class PopupWindowManager : MonoBehaviour
         _timeSinceLastPopupSpawnAttempt += Time.deltaTime;
         if (_timeSinceLastPopupSpawnAttempt >= _popupTrySpawnTime)
         {
-            _timeSinceLastPopupSpawnAttempt = 0f;
+            float randomOffset = Random.Range(_popupSpawnTimeRandomOffset * -1, _popupSpawnTimeRandomOffset);
+            _timeSinceLastPopupSpawnAttempt = 0f + randomOffset;
             TryToSpawnPopup();
         }
     }

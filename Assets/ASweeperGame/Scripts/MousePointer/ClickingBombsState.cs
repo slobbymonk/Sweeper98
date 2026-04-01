@@ -7,15 +7,27 @@ public class ClickingBombsState : State
     public override void Enter()
     {
         Mine[] bombs = GameObject.FindObjectsByType<Mine>(FindObjectsSortMode.None);
+
+        if (bombs.Length == 0)
+            return;
+
         int randomIndex = Random.Range(0, bombs.Length);
         _targetBomb = bombs[randomIndex];
 
     }
     public override void Update()
     {
-        if(_targetBomb == null)
+        if (_targetBomb == null)
+        {
             stateMachine.ChangeState(stateMachine.GetNewState());
+            return;
+        }
 
+        if (!_targetBomb.isActiveAndEnabled)
+        {
+            stateMachine.ChangeState(stateMachine.GetNewState());
+            return;
+        }
 
         if (MoveToward(_targetBomb.transform.position, 0.1f, 2f, 0.5f))
         {

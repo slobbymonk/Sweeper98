@@ -7,6 +7,7 @@ public class BombManager : MonoBehaviour
     [SerializeField] private int _columnCount;
 
     [SerializeField] private float _bombTrySpawnTime = 5f;
+    [SerializeField] private float _bombSpawnTimeRandomness;
     private float _timeSinceLastBombSpawnAttempt = 0f;
 
     [SerializeField] private GameObject bombPrefab;
@@ -23,7 +24,8 @@ public class BombManager : MonoBehaviour
         _timeSinceLastBombSpawnAttempt += Time.deltaTime;
         if (_timeSinceLastBombSpawnAttempt >= _bombTrySpawnTime)
         {
-            _timeSinceLastBombSpawnAttempt = 0f;
+            float randomOffset = Random.Range(-_bombSpawnTimeRandomness, _bombSpawnTimeRandomness);
+            _timeSinceLastBombSpawnAttempt = randomOffset;
             SpawnBomb();
         }
     }
