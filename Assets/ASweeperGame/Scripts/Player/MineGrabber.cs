@@ -8,9 +8,6 @@ public class MineGrabber : MonoBehaviour
 {
     private Mine _currentlyHeldMine;
 
-    [SerializeField] private Sprite _mineHeldSprite;
-    [SerializeField] private Sprite _mineDefaultSprite;
-
     [Header("Launch")]
     [SerializeField] private float _minLaunchForce = 500f;
     [SerializeField] private float _maxLaunchForce = 2000f;
