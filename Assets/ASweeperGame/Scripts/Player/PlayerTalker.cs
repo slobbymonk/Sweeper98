@@ -19,6 +19,8 @@ public class PlayerTalker : MonoBehaviour
         Instance = this;
 
         _bubbleScale = _bubble.transform.localScale;
+
+        ShowText("Oh oh, it looks like you've got a virus. Oh noooooo.", 5);
     }
 
     public void ShowText(string text, float duration)
