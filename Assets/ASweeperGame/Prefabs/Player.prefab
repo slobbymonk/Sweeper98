@@ -184,7 +184,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: dff4c19f89bac0d45a0751700004bc20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -311,8 +311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939ca278bd225064299a616c4304c4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineGrabber
-  _bombHoldingSprite: {fileID: 509177481554914400, guid: c2488524abb77654ca513c92101b67c1, type: 3}
-  _spriteRenderer: {fileID: 5597013633290558718}
   _minLaunchForce: 500
   _maxLaunchForce: 5000
   _maxChargeTime: 2
@@ -370,11 +368,11 @@ MonoBehaviour:
   _text: {fileID: 6074695160752011418}
   _popupSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 22885611
+      Data2: 1075033248
+      Data3: -829763920
+      Data4: 2143737481
+    Path: event:/Clippy/ClippyTextBubblePopup
 --- !u!70 &5375515323392378668
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -532,13 +530,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4303821337810812448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.4499998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7666469502561621788}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &7483680402708924416
 SpriteRenderer:
   serializedVersion: 2
@@ -586,7 +584,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: b817d5a13087fa74bad2359484c1105f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

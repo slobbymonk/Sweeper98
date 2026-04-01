@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 public class MineGrabber : MonoBehaviour
 {
     private Mine _currentlyHeldMine;
-    [SerializeField] private Sprite _bombHoldingSprite;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [Header("Launch")]
     [SerializeField] private float _minLaunchForce = 500f;
@@ -20,7 +18,6 @@ public class MineGrabber : MonoBehaviour
     [SerializeField] private float _maxShakeAmount = 0.15f;
     [SerializeField] private float _shakeSpeed = 30f;
 
-    private Sprite _defaultSprite;
     private bool _isCoolingDown;
     private bool _isCharging;
     private float _chargeTime;
@@ -32,11 +29,6 @@ public class MineGrabber : MonoBehaviour
     [SerializeField] EventReference _launchMine;
 
     private bool _hasGrabbed;
-
-    private void Awake()
-    {
-        _defaultSprite = _spriteRenderer.sprite;
-    }
 
     private void Start()
     {
@@ -98,7 +90,6 @@ public class MineGrabber : MonoBehaviour
         _currentlyHeldMine.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         _currentlyHeldMine.Rb.AddForce(_aimDirection * force * Time.deltaTime, ForceMode2D.Impulse);
 
-        _spriteRenderer.sprite = _defaultSprite;
         _currentlyHeldMine = null;
         _isCharging = false;
         _chargeTime = 0f;
@@ -141,7 +132,6 @@ public class MineGrabber : MonoBehaviour
             _heldMineBaseLocalPos = Vector3.zero;
             mine.Rb.bodyType = RigidbodyType2D.Kinematic;
             mine.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            _spriteRenderer.sprite = _bombHoldingSprite;
         }
     }
 }
