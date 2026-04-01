@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,9 @@ public class MineGrabber : MonoBehaviour
     private Vector3 _heldMineBaseLocalPos;
 
     [SerializeField] private InputActionReference _mousePositionReference;
+
+    [SerializeField] EventReference _pickupMine;
+    [SerializeField] EventReference _launchMine;
 
     private void Awake()
     {
@@ -97,6 +101,8 @@ public class MineGrabber : MonoBehaviour
         _isCharging = false;
         _chargeTime = 0f;
 
+        RuntimeManager.PlayOneShot(_launchMine);
+
         StartCoroutine(HandleCooldown());
     }
 
@@ -111,6 +117,7 @@ public class MineGrabber : MonoBehaviour
     {
         if (_currentlyHeldMine != null) return false;
         _currentlyHeldMine = mine;
+        RuntimeManager.PlayOneShot(_pickupMine);
         return true;
     }
 

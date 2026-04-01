@@ -235,6 +235,20 @@ MonoBehaviour:
   _circleRadius: 1
   _explosionRange: {fileID: 3825127617613290369}
   _explosion: {fileID: 789761889020663131, guid: c1c47904818aec045848f78722375012, type: 3}
+  _explosionSound:
+    Guid:
+      Data1: -1683000307
+      Data2: 1322892145
+      Data3: 1076975767
+      Data4: 380004408
+    Path: event:/Mine/MineExplosion
+  _bounceOffEdgeSound:
+    Guid:
+      Data1: 1929870201
+      Data2: 1102149373
+      Data3: -2091441523
+      Data4: 590522622
+    Path: event:/Mine/MineBouncingOffEdge
 --- !u!114 &2215390622059567094
 MonoBehaviour:
   m_ObjectHideFlags: 0

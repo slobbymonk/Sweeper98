@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class Mine : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class Mine : MonoBehaviour
     [SerializeField] float _circleRadius = 1f;
     [SerializeField] Transform _explosionRange;
     [SerializeField] GameObject _explosion;
+    [SerializeField] EventReference _explosionSound;
+    [SerializeField] EventReference _bounceOffEdgeSound;
 
     public Rigidbody2D Rb { get; private set; }
 
@@ -26,9 +27,9 @@ public class Mine : MonoBehaviour
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject.TryGetComponent<PlayerController>(out var player))
+            if (colliders[i].gameObject.TryGetComponent<PlayerHealth>(out var playerHealth))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                playerHealth.Die();
             }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
@@ -44,11 +45,18 @@ public class Mine : MonoBehaviour
         }
 
         Instantiate(_explosion, transform.position, Quaternion.identity);
+        RuntimeManager.PlayOneShot(_explosionSound);
         Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("ScreenEdge"))
+        {
+            RuntimeManager.PlayOneShot(_bounceOffEdgeSound);
+            return;
+        }
+
         if(collision.gameObject.TryGetComponent<PopupWindow>(out var window) 
             || collision.gameObject.TryGetComponent<Mine>(out var _))
         {
