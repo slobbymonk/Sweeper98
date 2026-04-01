@@ -1,7 +1,10 @@
 ﻿<Solution>
+  <Project Path="PrimeTween.Demo.csproj" />
   <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="FMODUnityEditor.csproj" />
   <Project Path="FMODUnity.csproj" />
-  <Project Path="FMODUnityResonance.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="FMODUnityResonance.csproj" />
+  <Project Path="PrimeTween.Debug.csproj" />
+  <Project Path="PrimeTween.Installer.csproj" />
 </Solution>

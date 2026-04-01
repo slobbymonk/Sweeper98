@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5c5b170a-72a4-4ea0-b339-fad3074eb9b3}">
+		<property name="assetPath">
+			<value>ShootAndPickup/Shoot.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.25022675736961453</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{686aecd4-b1fc-4320-be14-18751ed6db90}</destination>
+		</relationship>
+	</object>
+</objects>

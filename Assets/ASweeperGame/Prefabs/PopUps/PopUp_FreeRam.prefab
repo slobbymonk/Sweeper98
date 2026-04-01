@@ -53,6 +53,20 @@ MonoBehaviour:
   _bgSpriteRenderer: {fileID: 4395681475403711558}
   _contentSpriteRenderer: {fileID: 4035910875041992373}
   _closeButton: {fileID: 7862656009078134795}
+  _spawnSound:
+    Guid:
+      Data1: -589950566
+      Data2: 1255291440
+      Data3: -1472544878
+      Data4: 2146314212
+    Path: event:/PopupWindowSpawning
+  _closeSound:
+    Guid:
+      Data1: -450990088
+      Data2: 1273769141
+      Data3: 1727892374
+      Data4: -1393452817
+    Path: event:/PopupWindowClose
 --- !u!61 &2941076830099897992
 BoxCollider2D:
   m_ObjectHideFlags: 0
