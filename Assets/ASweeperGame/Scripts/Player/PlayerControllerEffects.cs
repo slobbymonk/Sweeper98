@@ -21,6 +21,10 @@ public class PlayerControllerEffects : MonoBehaviour
         _originalScale = _visuals.localScale;
 
         _mineGrabber.OnGrabbedMine += HandleMineGrabbed;
+
+        Vector2 scale = transform.localScale;
+        transform.localScale = scale * .5f;
+        Tween.Scale(transform, scale, .2f, Ease.OutBounce);
     }
 
     private void OnDestroy()
