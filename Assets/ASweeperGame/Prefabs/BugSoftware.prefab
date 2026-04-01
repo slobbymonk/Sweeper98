@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6321233462845535683}
   - component: {fileID: 7358652456445616716}
   - component: {fileID: 4620678188863656441}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BugSoftware
   m_TagString: Untagged
   m_Icon: {fileID: 0}
