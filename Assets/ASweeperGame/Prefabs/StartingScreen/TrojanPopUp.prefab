@@ -1952,6 +1952,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3491f30f3c778db4f96c5e63a5dec46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartingPopUps
+  _popUpSound:
+    Guid:
+      Data1: -589950566
+      Data2: 1255291440
+      Data3: -1472544878
+      Data4: 2146314212
+    Path: event:/PopupWindowSpawning
   _trojanClosePopUps:
   - {fileID: 8866468528219159312}
   - {fileID: 2870592327571247158}

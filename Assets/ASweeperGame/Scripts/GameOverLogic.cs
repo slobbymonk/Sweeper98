@@ -7,10 +7,16 @@ public class GameOverLogic : MonoBehaviour
     [SerializeField] private GameObject _blueScreenOfDeath;
     [SerializeField] private GameObject[] _errors;
     [SerializeField] private EventReference _errorPopupSound;
+    [SerializeField] private Material _glitchMaterial;
 
     private void Start()
     {
+        _glitchMaterial.SetInt("_IsGlitching", 1);
         StartCoroutine(HandleAnimation());
+    }
+    private void Update()
+    {
+        _glitchMaterial.SetFloat("_UnscaledTime", Time.unscaledTime);
     }
 
     IEnumerator HandleAnimation()
@@ -26,5 +32,9 @@ public class GameOverLogic : MonoBehaviour
         }
 
         _blueScreenOfDeath.SetActive(true);
+    }
+    private void OnDestroy()
+    {
+        _glitchMaterial.SetInt("_IsGlitching", 0);
     }
 }
