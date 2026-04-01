@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
   _circleRadius: 1
   _explosionRange: {fileID: 3825127617613290369}
+  _explosion: {fileID: 789761889020663131, guid: c1c47904818aec045848f78722375012, type: 3}
 --- !u!114 &2215390622059567094
 MonoBehaviour:
   m_ObjectHideFlags: 0
