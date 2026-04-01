@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_GlitchEffect
+  m_Name: MAT_BugGlitched
   m_Shader: {fileID: -6465566751694194690, guid: 969fbfb269031d644896ab7acf1d25e6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -46,9 +46,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _IsGlitching: 0
-    - _Time: 32.06103
-    - _UnscaledTime: 68.30399
-    - _time: 0.18
+    - _UnscaledTime: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
