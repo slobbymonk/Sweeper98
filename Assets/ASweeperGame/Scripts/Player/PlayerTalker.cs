@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FMODUnity;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class PlayerTalker : MonoBehaviour
 {
     [SerializeField] private GameObject _bubble;
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private EventReference _popupSound;
 
     public static PlayerTalker Instance;
 
@@ -16,6 +18,7 @@ public class PlayerTalker : MonoBehaviour
 
     public void ShowText(string text, float duration)
     {
+        RuntimeManager.PlayOneShot(_popupSound);
         StartCoroutine(ShowTextRoutine(text, duration));
     }
 

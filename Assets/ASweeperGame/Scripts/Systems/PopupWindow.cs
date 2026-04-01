@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FMODUnity;
+using System;
 using UnityEngine;
 
 public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
@@ -17,6 +18,9 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
 
     [SerializeField] private SpriteRenderer _closeButton;
 
+    [SerializeField] private EventReference _spawnSound;
+    [SerializeField] private EventReference _closeSound;
+
     void Awake()
     {
         BoxCollider = GetComponent<BoxCollider2D>();
@@ -27,10 +31,13 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
         _closeButton.sortingOrder = RenderingOrder + 1;
         _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
+
+        RuntimeManager.PlayOneShot(_spawnSound);
     }
 
     void OnDestroy()
     {
+        RuntimeManager.PlayOneShot(_closeSound);
         OnDestroyed?.Invoke(this);
     }
 }
