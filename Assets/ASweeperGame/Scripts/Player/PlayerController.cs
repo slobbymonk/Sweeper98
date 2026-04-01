@@ -6,9 +6,10 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float _moveSpeed = 4500;
     [SerializeField] private float _maxSpeed = 20;
+    public float MaxSpeed => _maxSpeed;
     [SerializeField] private float _counterMovement = 0.175f;
     private float _threshold = 0.01f;
-    private Rigidbody2D _rb;
+    public Rigidbody2D Rigidbody { get; private set; }
 
     [Header("Input")]
 
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        _rb = gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         float x = InputManager.Instance.MoveInput.x;
         float y = InputManager.Instance.MoveInput.y;
 
-        Vector2 mag = _rb.linearVelocity;
+        Vector2 mag = Rigidbody.linearVelocity;
         float xMag = mag.x, yMag = mag.y;
 
         CounterMovement(x, y, mag);
@@ -42,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
         float multiplier = 1f, multiplierV = 1f;
 
-        _rb.AddForce(_orientation.transform.up * y * _moveSpeed * Time.deltaTime * multiplier * multiplierV);
-        _rb.AddForce(_orientation.transform.right * x * _moveSpeed * Time.deltaTime * multiplier);
+        Rigidbody.AddForce(_orientation.transform.up * y * _moveSpeed * Time.deltaTime * multiplier * multiplierV);
+        Rigidbody.AddForce(_orientation.transform.right * x * _moveSpeed * Time.deltaTime * multiplier);
     }
 
     private void CounterMovement(float x, float y, Vector2 mag)
@@ -52,20 +53,20 @@ public class PlayerController : MonoBehaviour
             || (mag.x < -_threshold && x > 0)
             || (mag.x > _threshold && x < 0))
         {
-            _rb.AddForce(_moveSpeed * _orientation.transform.right * Time.deltaTime * -mag.x * _counterMovement);
+            Rigidbody.AddForce(_moveSpeed * _orientation.transform.right * Time.deltaTime * -mag.x * _counterMovement);
         }
 
         if (Math.Abs(mag.y) > _threshold && Math.Abs(y) < 0.05f
             || (mag.y < -_threshold && y > 0)
             || (mag.y > _threshold && y < 0))
         {
-            _rb.AddForce(_moveSpeed * _orientation.transform.up * Time.deltaTime * -mag.y * _counterMovement);
+            Rigidbody.AddForce(_moveSpeed * _orientation.transform.up * Time.deltaTime * -mag.y * _counterMovement);
         }
 
-        if (Mathf.Sqrt(Mathf.Pow(_rb.linearVelocity.x, 2) + Mathf.Pow(_rb.linearVelocity.y, 2)) > _maxSpeed)
+        if (Mathf.Sqrt(Mathf.Pow(Rigidbody.linearVelocity.x, 2) + Mathf.Pow(Rigidbody.linearVelocity.y, 2)) > _maxSpeed)
         {
-            Vector2 n = _rb.linearVelocity.normalized * _maxSpeed;
-            _rb.linearVelocity = new Vector2(n.x, n.y);
+            Vector2 n = Rigidbody.linearVelocity.normalized * _maxSpeed;
+            Rigidbody.linearVelocity = new Vector2(n.x, n.y);
         }
     }
 }

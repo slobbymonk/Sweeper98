@@ -1,4 +1,5 @@
 ﻿using FMODUnity;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,6 +35,8 @@ public class MineGrabber : MonoBehaviour
     [SerializeField] EventReference _launchMine;
 
     private bool _hasGrabbed;
+
+    public Action OnGrabbedMine;
 
     private void Start()
     {
@@ -121,6 +124,8 @@ public class MineGrabber : MonoBehaviour
         if (_currentlyHeldMine != null) return false;
         _currentlyHeldMine = mine;
         RuntimeManager.PlayOneShot(_pickupMine);
+
+        OnGrabbedMine?.Invoke();
 
         if (!_hasGrabbed)
         {
