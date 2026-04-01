@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DraggingState : State
@@ -23,7 +24,7 @@ public class DraggingState : State
 
         if (undraggedWindows.Count == 0)
         {
-            _skipToNext = true; // defer — never call ChangeState from Enter
+            _skipToNext = true;
             return;
         }
 
@@ -40,11 +41,19 @@ public class DraggingState : State
         }
 
         if (_targetPopup == null)
-            stateMachine.ChangeState(stateMachine.GetNewState());
+        {
+             stateMachine.ChangeState(stateMachine.GetNewState());
+             return;
+        }
 
         if (!_holdsPopup)
         {
-            bool arrived = MoveToward(_targetPopup.transform.position, 0.1f, 10f, 0.5f);
+            Transform popupBackground = _targetPopup.transform.Find("BG").transform;
+            Vector2 popupGrabPoint = (Vector2)popupBackground.position +
+                new Vector2(0, popupBackground.localScale.y)+
+                new Vector2(0, 0.1f);
+
+            bool arrived = MoveToward(popupGrabPoint, 0.1f, 10f, 0.01f);
             if (arrived)
             {
                 _holdsPopup = true;

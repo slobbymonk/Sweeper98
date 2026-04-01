@@ -1,4 +1,5 @@
 ﻿using FMODUnity;
+using PrimeTween;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -9,11 +10,15 @@ public class PlayerTalker : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private EventReference _popupSound;
 
+    private Vector3 _bubbleScale;
+
     public static PlayerTalker Instance;
 
     private void Awake()
     {
         Instance = this;
+
+        _bubbleScale = _bubble.transform.localScale;
     }
 
     public void ShowText(string text, float duration)
@@ -26,7 +31,14 @@ public class PlayerTalker : MonoBehaviour
     {
         _bubble.SetActive(true);
         _text.text = text;
+
+        _bubble.transform.localScale = Vector2.zero;
+        Tween.Scale(_bubble.transform, _bubbleScale, .2f, Ease.OutBounce);
+
         yield return new WaitForSeconds(duration);
+
+        Tween.Scale(_bubble.transform, Vector2.zero, .5f, Ease.InBounce);
+
         _bubble.SetActive(false);
     }
 }
