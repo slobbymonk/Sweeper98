@@ -1171,6 +1171,46 @@ PrefabInstance:
       propertyPath: _trojanPopUp
       value: 
       objectReference: {fileID: 1151770704}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _introSound.Path
+      value: event:/Startup_OS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _startupSound.Path
+      value: event:/Startup_Desktop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _introSound.Guid.Data1
+      value: 896122648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _introSound.Guid.Data2
+      value: 1223010385
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _introSound.Guid.Data3
+      value: -889123154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _introSound.Guid.Data4
+      value: 1529636717
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _startupSound.Guid.Data1
+      value: 1339801204
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _startupSound.Guid.Data2
+      value: 1148465663
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _startupSound.Guid.Data3
+      value: -1541878097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493561774273902531, guid: 0faa6589fc7e98e498f560681fa99fc6, type: 3}
+      propertyPath: _startupSound.Guid.Data4
+      value: 1630905093
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
