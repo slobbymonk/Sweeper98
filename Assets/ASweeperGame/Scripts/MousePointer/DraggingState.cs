@@ -29,6 +29,7 @@ public class DraggingState : State
         }
 
         _targetPopup = undraggedWindows[Random.Range(0, undraggedWindows.Count)];
+        _targetPopup.HasBeenDragged = true;
     }
 
     public override void Update()
@@ -66,7 +67,6 @@ public class DraggingState : State
         {
             if (MoveToward(_popupDropoffPoint, 0.1f, 2f, 0.5f))
             {
-                _targetPopup.HasBeenDragged = true;
                 _targetPopup.transform.SetParent(null);
                 stateMachine.ChangeState(stateMachine.GetNewState());
             }

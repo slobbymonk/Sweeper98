@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 148978989267682335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0158, y: -4.4, z: 0}
+  m_LocalPosition: {x: -1.7926002, y: -4.3244, z: 0}
   m_LocalScale: {x: 13.979707, y: 0.68679005, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 4600061649687202670}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9332, y: -0.0356, z: 0}
+  m_LocalPosition: {x: -9.71, y: 0.04, z: 0}
   m_LocalScale: {x: 1.8936127, y: 8.93095, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 4828146963303356558}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.78882, y: 0.40122, z: 0}
+  m_LocalPosition: {x: 1.78784, y: -0.19634, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 9009262781229143475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.97, y: -0.08, z: 0}
+  m_LocalPosition: {x: 6.1931996, y: -0.0044, z: 0}
   m_LocalScale: {x: 1.8936127, y: 8.93095, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupWindowManager
   _popupTrySpawnTime: 5
-  _popupSpawnTimeRandomOffset: 0
+  _popupSpawnTimeRandomOffset: 4
   _popupWindows: []
   _popupPrefab:
   - {fileID: 6374611876337593467, guid: 2580b2c0ee346fb43a1979b46581deb2, type: 3}
@@ -364,8 +364,14 @@ MonoBehaviour:
   - {fileID: 272151496586702418, guid: ba7467b4ec585b5468a05f703002e6cc, type: 3}
   - {fileID: 272151496586702418, guid: 5416a8b3aea6dd940b695c2fd36e8da6, type: 3}
   - {fileID: 272151496586702418, guid: d0225f47b009cba43a9ccafb7913cb36, type: 3}
-  - {fileID: 9124724430126480654, guid: 6dc5566240258964e8028f1ad76c52c1, type: 3}
+<<<<<<< Updated upstream
+  - {fileID: 5726319340060704645, guid: 83013c21f643fc44abce04f8b0608623, type: 3}
   - {fileID: 272151496586702418, guid: b878102f7c326ff40b6214bc0e79df4c, type: 3}
+  - {fileID: 272151496586702418, guid: b9efa4e3809ddc346a82b70b4704436b, type: 3}
+  - {fileID: 1217195806447399527, guid: bb1109abd90f72a45bc6739b06b3a3f1, type: 3}
+=======
+  - {fileID: 272151496586702418, guid: ba7467b4ec585b5468a05f703002e6cc, type: 3}
+>>>>>>> Stashed changes
   _popupSpawnableArea:
   - {fileID: 7650286476663861279}
   - {fileID: 8970264475449723582}
