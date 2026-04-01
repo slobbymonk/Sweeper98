@@ -1,6 +1,7 @@
 using UnityEngine;
 using FMODUnity;
 using UnityEngine.Android;
+using PrimeTween;
 
 public class StartingPopUps : MonoBehaviour
 {
@@ -22,20 +23,13 @@ public class StartingPopUps : MonoBehaviour
         }
     }
 
-    public void TrojanHorseButton()
-    {
-        StartGame();
-    }
-
     public void TrojanHorseClose()
     {
         _trojanClosePopUps[_currentPopUpIndex].gameObject.SetActive(true);
+        Vector2 scale = _trojanClosePopUps[_currentPopUpIndex].transform.localScale;
+        _trojanClosePopUps[_currentPopUpIndex].transform.localScale = scale * .5f;
+        Tween.Scale(_trojanClosePopUps[_currentPopUpIndex].transform, scale, .2f, Ease.OutBounce);
         _currentPopUpIndex += 1;
         RuntimeManager.PlayOneShot(_popUpSound);
-    }
-
-    void StartGame()
-    {
-       GameStateManager.Instance.ChangeState(GameStateManager.GameState.Playing);
     }
 }

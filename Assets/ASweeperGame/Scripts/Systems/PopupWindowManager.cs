@@ -28,8 +28,11 @@ public class PopupWindowManager : MonoBehaviour
     private void Start()
     {
         _originalSpawnInterval = _popupTrySpawnTime;
+        Invoke("SpawnInitialPopups", 1);
+    }
 
-
+    void SpawnInitialPopups()
+    {
         TryToSpawnPopup();
         TryToSpawnPopup();
         TryToSpawnPopup();
