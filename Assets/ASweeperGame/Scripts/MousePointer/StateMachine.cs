@@ -34,11 +34,11 @@ public class StateMachine : MonoBehaviour
        float rand = Random.Range(0f, 1f);
         MousePointerState randomChoice;
 
-        if(rand < 0.33f)
-            randomChoice = MousePointerState.Roaming;
-        else if (rand < 0.66f)
-            randomChoice = MousePointerState.ClickingBombs;
-        else
+        //if(rand < 0.33f)
+        //    randomChoice = MousePointerState.Roaming;
+        //else if (rand < 0.66f)
+        //    randomChoice = MousePointerState.ClickingBombs;
+        //else
             randomChoice = MousePointerState.Dragging;
 
 
