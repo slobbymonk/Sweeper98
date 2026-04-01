@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4187885035070170154}
   - component: {fileID: 2941076830099897992}
   - component: {fileID: -4035862919834748218}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PopUp_FreeRam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5863162317447246606}
   - component: {fileID: 4035910875041992373}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 7862656009078134795}
   - component: {fileID: 6248228015701287154}
   - component: {fileID: 1478847410478385273}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: XButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8958661406197841948}
   - component: {fileID: 4395681475403711558}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
