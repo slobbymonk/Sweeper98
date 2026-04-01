@@ -313,9 +313,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MineGrabber
   _minLaunchForce: 500
   _maxLaunchForce: 5000
-  _maxChargeTime: 2
+  _maxChargeTime: 1.2
   _rotationPosition: {fileID: 7666469502561621788}
   _holdPosition: {fileID: 933965582368169930}
+  _chargeMaxHandsOffset: 0.1
   _maxShakeAmount: 0.15
   _shakeSpeed: 30
   _mousePositionReference: {fileID: 3495421219005435396, guid: 154311858bc7b3146a19acf2d5239fd3, type: 3}

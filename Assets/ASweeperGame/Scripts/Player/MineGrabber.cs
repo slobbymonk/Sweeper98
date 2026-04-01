@@ -13,6 +13,8 @@ public class MineGrabber : MonoBehaviour
     [SerializeField] private float _maxChargeTime = 2f;
     [SerializeField] private Transform _rotationPosition;
     [SerializeField] private Transform _holdPosition;
+    [SerializeField] private float _chargeMaxHandsOffset = 0.1f;
+    private Vector3 _defaultHandsLocalPosition;
 
     [Header("Shake")]
     [SerializeField] private float _maxShakeAmount = 0.15f;
@@ -34,6 +36,8 @@ public class MineGrabber : MonoBehaviour
     {
         InputManager.Instance.OnLaunched += BeginCharge;
         InputManager.Instance.OnLaunchReleased += ReleaseLaunch;
+
+        _defaultHandsLocalPosition = _holdPosition.localPosition;
     }
 
     private void OnDestroy()
@@ -51,6 +55,7 @@ public class MineGrabber : MonoBehaviour
         _chargeTime = Mathf.Min(_chargeTime + Time.deltaTime, _maxChargeTime);
 
         float chargeRatio = _chargeTime / _maxChargeTime;
+        _holdPosition.localPosition = Vector3.Lerp(_defaultHandsLocalPosition, _defaultHandsLocalPosition - new Vector3(.1f, 0, 0), chargeRatio);
         float shakeAmount = chargeRatio * _maxShakeAmount;
         float offsetX = Mathf.Sin(Time.time * _shakeSpeed) * shakeAmount;
         float offsetY = Mathf.Cos(Time.time * _shakeSpeed * 1.3f) * shakeAmount;
@@ -82,6 +87,8 @@ public class MineGrabber : MonoBehaviour
 
         float chargeRatio = _chargeTime / _maxChargeTime;
         float force = Mathf.Lerp(_minLaunchForce, _maxLaunchForce, chargeRatio);
+
+        _holdPosition.localPosition = _defaultHandsLocalPosition;
 
         // Reset mine position before launch so it doesn't fire from a shaken offset
         _currentlyHeldMine.transform.localPosition = _heldMineBaseLocalPos;
