@@ -8,6 +8,7 @@ public class Mine : MonoBehaviour
     private SpriteCutter _spriteCutter;
     [SerializeField] float _circleRadius = 1f;
     [SerializeField] Transform _explosionRange;
+    [SerializeField] GameObject _explosion;
 
     public Rigidbody2D Rb { get; private set; }
 
@@ -42,6 +43,7 @@ public class Mine : MonoBehaviour
             _spriteCutter.Cut(window, renderingOrder, _explosionRange);
         }
 
+        Instantiate(_explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
