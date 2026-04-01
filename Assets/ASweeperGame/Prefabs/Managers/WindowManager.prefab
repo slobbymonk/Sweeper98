@@ -357,6 +357,11 @@ MonoBehaviour:
   _popupPrefab:
   - {fileID: 6374611876337593467, guid: 2580b2c0ee346fb43a1979b46581deb2, type: 3}
   - {fileID: 272151496586702418, guid: 4c31244b966489c4fae1d79280e14644, type: 3}
+  - {fileID: 272151496586702418, guid: 3037d44bcd86b0d4ea622cde4b9c0b14, type: 3}
+  - {fileID: 272151496586702418, guid: 4c5180224bd91564ab1d2774e0bda390, type: 3}
+  - {fileID: 272151496586702418, guid: e90cb2bfda7b87b448bfe107ca4a2b26, type: 3}
+  - {fileID: 272151496586702418, guid: ba7467b4ec585b5468a05f703002e6cc, type: 3}
+  - {fileID: 272151496586702418, guid: 5416a8b3aea6dd940b695c2fd36e8da6, type: 3}
   _popupSpawnableArea:
   - {fileID: 7650286476663861279}
   - {fileID: 8970264475449723582}
