@@ -7,11 +7,13 @@ public class PlayerTalker : MonoBehaviour
     [SerializeField] private GameObject _bubble;
     [SerializeField] private TMP_Text _text;
 
-    [Button]
-    public void DebugShowText()
+    public static PlayerTalker Instance;
+
+    private void Awake()
     {
-        ShowText("It looks like I've got a bomb, hold space.", 5);
+        Instance = this;
     }
+
     public void ShowText(string text, float duration)
     {
         StartCoroutine(ShowTextRoutine(text, duration));
