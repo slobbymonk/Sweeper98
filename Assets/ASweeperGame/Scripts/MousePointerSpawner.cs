@@ -9,8 +9,6 @@ public class MousePointerSpawner : MonoBehaviour
     int _nrOfMousePointers = 0;
     void Start()
     {
-        GameObject go = Instantiate(_mousePointerPrefab, new Vector3(2, 2, 0), Quaternion.identity);
-        go.GetComponentInChildren<StateMachine>().Init(_popupDropoffZone);
         SpawnMousePointer();
     }
 

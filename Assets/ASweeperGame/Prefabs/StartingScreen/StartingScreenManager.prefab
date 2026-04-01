@@ -48,18 +48,18 @@ MonoBehaviour:
   _devsPopUp: {fileID: 0}
   _introSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 896122648
+      Data2: 1223010385
+      Data3: -889123154
+      Data4: 1529636717
+    Path: event:/Startup_OS
   _startupSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1339801204
+      Data2: 1148465663
+      Data3: -1541878097
+      Data4: 1630905093
+    Path: event:/Startup_Desktop
   _popUpSound:
     Guid:
       Data1: -589950566
