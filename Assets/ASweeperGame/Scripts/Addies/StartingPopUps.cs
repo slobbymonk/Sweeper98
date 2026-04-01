@@ -1,18 +1,25 @@
 using UnityEngine;
+using FMODUnity;
 using UnityEngine.Android;
 
 public class StartingPopUps : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _trojanClosePopUp;
-    [SerializeField] private Transform _initialSpawnPosition;
-    [SerializeField] private Vector2 _trojanClosePopUpOffset;
+    [SerializeField] private EventReference _popUpSound;
+    [SerializeField] private GameObject[] _trojanClosePopUps;
     private int _currentPopUpIndex;
-    private Vector2 _lastPopUpPosition;
 
     void Awake()
     {
         _currentPopUpIndex = 0;
-        _lastPopUpPosition = _initialSpawnPosition.transform.position;
+        CloseAllPopUps();
+    }
+
+    void CloseAllPopUps()
+    {
+        foreach (GameObject go in _trojanClosePopUps)
+        {
+            go.SetActive(false);
+        }
     }
 
     public void TrojanHorseButton()
@@ -22,11 +29,9 @@ public class StartingPopUps : MonoBehaviour
 
     public void TrojanHorseClose()
     {
-        if (_currentPopUpIndex > _trojanClosePopUp.Length - 1) return;
-        GameObject newPopUp = GameObject.Instantiate(_trojanClosePopUp[_currentPopUpIndex], _lastPopUpPosition + _trojanClosePopUpOffset, Quaternion.identity);
-
-        _lastPopUpPosition = newPopUp.transform.position;
-        _currentPopUpIndex++;
+        _trojanClosePopUps[_currentPopUpIndex].gameObject.SetActive(true);
+        _currentPopUpIndex += 1;
+        RuntimeManager.PlayOneShot(_popUpSound);
     }
 
     void StartGame()

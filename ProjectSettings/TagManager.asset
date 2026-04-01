@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bomb
   - ScreenEdge
+  - Bug
   layers:
   - Default
   - TransparentFX
