@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaae9aa352d0e2345bfe0ddee1b23b31, type: 3}
-  m_Name: PU_FreeRam
+  m_Name: PU_GameCamp
   m_EditorClassIdentifier: Assembly-CSharp::SpriteAnimation
   _frames:
-  - Duration: 0.1
-    Sprite: {fileID: 1258557357602622816, guid: e9b7ded71375be04f93a4f24a086afad, type: 3}
-  - Duration: 0.1
-    Sprite: {fileID: 811702512, guid: e9b7ded71375be04f93a4f24a086afad, type: 3}
-  - Duration: 0.1
-    Sprite: {fileID: 1493947362, guid: e9b7ded71375be04f93a4f24a086afad, type: 3}
+  - Duration: 2
+    Sprite: {fileID: 1783817489, guid: 01f682d79fc8b1a43b212d3527ba661f, type: 3}
+  - Duration: 2
+    Sprite: {fileID: -441432935, guid: 01f682d79fc8b1a43b212d3527ba661f, type: 3}
