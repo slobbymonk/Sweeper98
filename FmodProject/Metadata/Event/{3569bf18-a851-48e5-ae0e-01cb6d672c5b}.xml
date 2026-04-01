@@ -31,6 +31,9 @@
 		<relationship name="timeline">
 			<destination>{d057b622-8cb0-41ff-b3c9-b0b19b7cb6a7}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{ad6c1163-8932-45ff-b8b4-2df2aced7a0d}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{9d4dfac8-ef87-48a8-bd3b-6c313ec03ea3}">
 		<relationship name="masterBus">
@@ -89,6 +92,9 @@
 		<property name="length">
 			<value>3.5</value>
 		</property>
+		<property name="pitch">
+			<value>5</value>
+		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{a5a9370b-95a2-4014-9042-1c364cb7ad8a}</destination>
 		</relationship>
@@ -97,6 +103,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{58d0c578-9a8f-410e-a2bd-411eec2ab882}">
+		<property name="volume">
+			<value>-2.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
