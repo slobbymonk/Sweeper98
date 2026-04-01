@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ASweeperGame/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/ASweeperGame/Scenes/TitleScene.unity
+    guid: d86763e530bac74409a95157d0328cd1
+  - enabled: 1
+    path: Assets/ASweeperGame/Scenes/PlayingScene.unity
+    guid: a421ffc55034182419d24708fae26f28
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

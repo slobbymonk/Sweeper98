@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         RuntimeManager.PlayOneShot(_deathSound);
+        GameStateManager.Instance.ChangeState(GameStateManager.GameState.GameOver);
     }
 }
