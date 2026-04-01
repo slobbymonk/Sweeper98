@@ -59,6 +59,7 @@ public class DraggingState : State
                 _holdsPopup = true;
                 FindPopupDropzone();
                 _targetPopup.transform.SetParent(stateMachine.Transform);
+                _targetPopup.GrabLogic();
             }
         }
         else

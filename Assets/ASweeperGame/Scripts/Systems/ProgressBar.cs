@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class ProgressBar : MonoBehaviour, IDraggable
     [SerializeField] private TMP_Text _progressText;
     [SerializeField] private float _timeBeforeFull;
 
+    public Action<IDraggable> OnGrabbed { get; set; }
 
     void Update()
     {
@@ -21,5 +23,9 @@ public class ProgressBar : MonoBehaviour, IDraggable
         string progressPercentageString = progressPercentage.ToString("F0");
         _progressText.text = $"{progressPercentageString}%";
         _fillImage.fillAmount = progressPercentage / 100;
+    }
+    public void GrabLogic()
+    {
+        OnGrabbed?.Invoke(this);
     }
 }

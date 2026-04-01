@@ -9,6 +9,7 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
     public bool HasBeenDragged { get; set; }
     public bool _hasBeenDragged = false;
     public Action<PopupWindow> OnDestroyed { get; set; }
+    public Action<IDraggable> OnGrabbed { get; set; }
 
     public BoxCollider2D BoxCollider {  get; private set; }
     public int RenderingOrder { get; private set; }
@@ -32,13 +33,17 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
         Vector2 windowScale = transform.localScale;
         transform.localScale = windowScale * .5f;
         Tween.Scale(transform, windowScale, .2f, Ease.OutBounce);
+        SetWindowToHighestLevel();
 
+        RuntimeManager.PlayOneShot(_spawnSound);
+    }
+
+    private void SetWindowToHighestLevel()
+    {
         RenderingOrder = MaskOutManager.Instance.GetRenderingOrder();
         _closeButton.sortingOrder = RenderingOrder + 1;
         _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
-
-        RuntimeManager.PlayOneShot(_spawnSound);
     }
 
     public void CloseWindow()
@@ -53,5 +58,11 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
         OnDestroyed?.Invoke(this);
 
         Destroy(gameObject);
+    }
+
+    public void GrabLogic()
+    {
+        SetWindowToHighestLevel();
+        OnGrabbed?.Invoke(this);
     }
 }
