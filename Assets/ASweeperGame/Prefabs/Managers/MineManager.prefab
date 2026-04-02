@@ -49,6 +49,7 @@ MonoBehaviour:
   _rowCount: 26
   _columnCount: 13
   _bombTrySpawnTime: 5
+  _bombSpawnTimeRandomness: 0.5
   bombPrefab: {fileID: 7078735195623903062, guid: 80f6be5cb91aec64380dd90b22b61161, type: 3}
 --- !u!1 &7560483157273743943
 GameObject:

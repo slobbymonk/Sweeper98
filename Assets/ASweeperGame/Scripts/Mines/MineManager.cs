@@ -81,6 +81,6 @@ public class BombManager : MonoBehaviour
 
     public void SetDifficultyScaler(float scaler)
     {
-        _bombTrySpawnTime = _originalSpawnInterval  - scaler;
+        _bombTrySpawnTime = _originalSpawnInterval - (scaler * 0.7f);
     }
 }
