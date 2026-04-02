@@ -35,4 +35,16 @@ public class WinLogic : MonoBehaviour
         _winPopup.transform.localScale = scale * .5f;
         yield return Tween.Scale(_winPopup.transform, scale, .2f, Ease.OutBounce, useUnscaledTime: true);
     }
+
+    [Button]
+    public void CloseGame()
+    {
+        StartCoroutine(HandleClosingGame());
+    }
+    IEnumerator HandleClosingGame()
+    {
+        Application.Quit();
+
+        yield return null;
+    }
 }
