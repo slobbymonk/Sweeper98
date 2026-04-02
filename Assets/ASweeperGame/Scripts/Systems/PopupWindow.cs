@@ -46,6 +46,12 @@ public class PopupWindow : MonoBehaviour, IDraggable, IDestroyable
         _contentSpriteRenderer.sortingOrder = RenderingOrder + 1;
         _textCanvas.sortingOrder = RenderingOrder + 1;
         _bgSpriteRenderer.sortingOrder = RenderingOrder;
+        SpriteMask[] masks = gameObject.GetComponentsInChildren<SpriteMask>();
+        for (int i = 0; i < masks.Length; i++)
+        {
+            masks[i].frontSortingOrder = RenderingOrder + 1;
+            masks[i].backSortingOrder = RenderingOrder - 1;
+        }
     }
 
     public void CloseWindow()
