@@ -6,6 +6,7 @@ public class PassiveBugSpawner : MonoBehaviour
     [SerializeField] private float _spawnInterval = 3f;
     private float _originalSpawnInterval;
     private float _timer;
+    public bool CanSpawn = true;
 
     public void SetDifficultyScaler(float scaler)
     {
@@ -20,6 +21,7 @@ public class PassiveBugSpawner : MonoBehaviour
 
     void Update()
     {
+        if (!CanSpawn) return;
         _timer += Time.deltaTime;
         if (_timer >= _spawnInterval)
         {

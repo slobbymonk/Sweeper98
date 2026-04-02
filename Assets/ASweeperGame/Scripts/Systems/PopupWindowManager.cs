@@ -19,6 +19,8 @@ public class PopupWindowManager : MonoBehaviour
 
     [SerializeField] private Transform[] _popupSpawnableArea;
 
+    public bool CanSpawn = true;
+
     public static PopupWindowManager Instance { get; private set; }
 
     private void Awake()
@@ -40,6 +42,8 @@ public class PopupWindowManager : MonoBehaviour
 
     public void Update()
     {
+        if (!CanSpawn) return;
+
         _timeSinceLastPopupSpawnAttempt += Time.deltaTime;
         if (_timeSinceLastPopupSpawnAttempt >= _popupTrySpawnTime)
         {
@@ -95,5 +99,13 @@ public class PopupWindowManager : MonoBehaviour
     {
         window.OnDestroyed -= HandlePopupDestroyed;
         _popupWindows.Remove(window);
+    }
+
+    public void CloseAllWindows()
+    {
+        for (int i = 0; i < _popupWindows.Count; i++)
+        {
+            _popupWindows[i].CloseWindow();
+        }
     }
 }

@@ -6,7 +6,8 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance { get; private set; }
     [SerializeField] private GameObject _gameOverScreen;
-    public enum GameState { MainMenu, Playing, GameOver }
+    [SerializeField] private GameObject _winScreen;
+    public enum GameState { MainMenu, Playing, GameOver, Win }
 
     public GameState CurrentState { get; private set; }
     public event Action<GameState> OnStateChanged;
@@ -51,6 +52,9 @@ public class GameStateManager : MonoBehaviour
             case GameState.GameOver:
                 Time.timeScale = 0f;
                 GameObject.Instantiate(_gameOverScreen);
+                break;
+            case GameState.Win:
+                GameObject.Instantiate(_winScreen);
                 break;
         }
         }
