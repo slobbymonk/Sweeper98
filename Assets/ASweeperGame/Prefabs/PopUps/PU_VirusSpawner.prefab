@@ -205,3 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BugSpawnerExe
   _bugPrefab: {fileID: 4731581561834655237, guid: 27a8feff6adfb974d850734f57b54715, type: 3}
   _spawnInterval: 3
+  _spawnSound:
+    Guid:
+      Data1: 1388866842
+      Data2: 1195428085
+      Data3: -1098671476
+      Data4: 1471645766
+    Path: event:/BugSpawning
