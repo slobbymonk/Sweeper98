@@ -980,6 +980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameStateManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4174204136629749647, guid: 1e30c3ad47053ae47b550d5b187f5657, type: 3}
+      propertyPath: _winScreen
+      value: 
+      objectReference: {fileID: 8155892090157812017, guid: f0d263b4dca33fa40ae75baf75f80752, type: 3}
     - target: {fileID: 9030444480878927523, guid: 1e30c3ad47053ae47b550d5b187f5657, type: 3}
       propertyPath: m_LocalPosition.x
       value: 463.2096
