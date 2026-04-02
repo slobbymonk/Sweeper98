@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3785186540694958247}
   - component: {fileID: 8493561774273902531}
+  - component: {fileID: 2719076259641294866}
   m_Layer: 0
   m_Name: StartingScreenManager
   m_TagString: Untagged
@@ -45,7 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartingScreenManager
   _trojanPopUp: {fileID: 0}
+  _mineSweeper: {fileID: 0}
   _devsPopUp: {fileID: 0}
+  _progressBar: {fileID: 0}
+  _thingsThatArentInGameScene:
+  - {fileID: 0}
   _introSound:
     Guid:
       Data1: 896122648
@@ -67,3 +72,17 @@ MonoBehaviour:
       Data3: -1472544878
       Data4: 2146314212
     Path: event:/PopupWindowSpawning
+--- !u!114 &2719076259641294866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656163689690420507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cbb9ba98c22fd46b262a93d9098aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnClippyWithDelay
+  _startingScreenManager: {fileID: 8493561774273902531}
+  _clippy: {fileID: 0}
