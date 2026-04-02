@@ -9,6 +9,8 @@ public class PlayerTalker : MonoBehaviour
     [SerializeField] private GameObject _bubble;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private EventReference _popupSound;
+    [SerializeField] private string _textInAwake = "Oh oh, it looks like you've got a virus. Oh noooooo.";
+    [SerializeField] private bool _playInAwake = true;
 
     private Vector3 _bubbleScale;
 
@@ -20,7 +22,7 @@ public class PlayerTalker : MonoBehaviour
 
         _bubbleScale = _bubble.transform.localScale;
 
-        ShowText("Oh oh, it looks like you've got a virus. Oh noooooo.", 5);
+        if(_playInAwake) ShowText(_textInAwake, 5);
     }
 
     public void ShowText(string text, float duration)
