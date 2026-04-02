@@ -232,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3303dcb2eb3cf4643ba862e9a967c031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  _playerKillRadius: 0.8
   _circleRadius: 1.56
+  _playerKillRadius: 0.4
   _explosionRange: {fileID: 3825127617613290369}
   _explosion: {fileID: 789761889020663131, guid: c1c47904818aec045848f78722375012, type: 3}
   _explosionSound:

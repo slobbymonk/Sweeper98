@@ -47,7 +47,7 @@ Material:
     m_Floats:
     - _IsGlitching: 0
     - _Time: 32.06103
-    - _UnscaledTime: 42.916714
+    - _UnscaledTime: 18.72048
     - _time: 0.18
     m_Colors: []
   m_BuildTextureStacks: []

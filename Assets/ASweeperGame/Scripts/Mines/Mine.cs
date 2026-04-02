@@ -14,6 +14,7 @@ public class Mine : MonoBehaviour
     private CircleCutter _circleCutter;
     private SpriteCutter _spriteCutter;
     [SerializeField] float _circleRadius = 1f;
+    [SerializeField] float _playerKillRadius = 1f;
     [SerializeField] Transform _explosionRange;
     [SerializeField] GameObject _explosion;
     [SerializeField] EventReference _explosionSound;
@@ -48,6 +49,11 @@ public class Mine : MonoBehaviour
             if (colliders[i].gameObject.TryGetComponent<TMP_Text>(out var text))
             {
                 Destroy(text.gameObject);
+            }
+            if (colliders[i].gameObject.TryGetComponent<PlayerHealth>(out var health))
+            {
+                if (Vector3.Distance(transform.position, health.transform.position) > _playerKillRadius) continue;
+                health.Die();
             }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
@@ -103,5 +109,7 @@ public class Mine : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(transform.position, _circleRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, _playerKillRadius);
     }
 }
