@@ -29,6 +29,9 @@ public class Mine : MonoBehaviour
 
     public Rigidbody2D Rb { get; private set; }
 
+
+    private bool _hasExploded = false;
+
     private void Awake()
     {
         _circleCutter = GetComponent<CircleCutter>();
@@ -42,6 +45,9 @@ public class Mine : MonoBehaviour
     [Button]
     public void Explode()
     {
+        if (_hasExploded) return;
+        _hasExploded = true;
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _circleRadius);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -65,7 +71,12 @@ public class Mine : MonoBehaviour
                 bug.Die();
                 continue;
             }
-        
+            if (colliders[i].gameObject.TryGetComponent<Mine>(out var mine))
+            {
+                mine.Explode();
+                continue;
+            }
+
 
             if (!colliders[i].gameObject.TryGetComponent<PopupWindow>(out var window)) continue;
 
