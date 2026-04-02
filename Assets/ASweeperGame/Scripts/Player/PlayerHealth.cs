@@ -10,8 +10,13 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private List<Collision2D> _collidersBeingTouched = new List<Collision2D>();
 
+    private bool _isDead;
+
     public void Die()
     {
+        if(_isDead) return;
+
+        _isDead = true;
         RuntimeManager.PlayOneShot(_deathSound);
         GameStateManager.Instance.ChangeState(GameStateManager.GameState.GameOver);
     }

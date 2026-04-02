@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1526033643912789038, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_Name
-      value: PopupWindow Variant
+      value: PU_VirusSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 1646200490312417964, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalPosition.x
@@ -100,6 +100,18 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5452569744604668141, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_Size.x
+      value: 104.074265
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452569744604668141, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_Offset.x
+      value: -47.367867
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452569744604668141, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.71000004
+      objectReference: {fileID: 0}
     - target: {fileID: 5863162317447246606, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -121,6 +133,10 @@ PrefabInstance:
       value: 'Ram_miner.exe
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355752684662952559, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_margin.z
+      value: 67.27618
       objectReference: {fileID: 0}
     - target: {fileID: 8958661406197841948, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalScale.x
@@ -156,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 54.9
       objectReference: {fileID: 0}
     - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_AnchoredPosition.y

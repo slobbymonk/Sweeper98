@@ -49,5 +49,11 @@ public class GameDifficultyManager : MonoBehaviour
         {
             mousePointerSpawner.SetDifficultyScalar(_currentDifficultyScaler);
         }
+
+        BombManager[] bombManagers = FindObjectsByType<BombManager>(FindObjectsSortMode.None);
+        foreach (BombManager bombManager in bombManagers)
+        {
+            bombManager.SetDifficultyScaler(_currentDifficultyScaler);
+        }
     }
 }

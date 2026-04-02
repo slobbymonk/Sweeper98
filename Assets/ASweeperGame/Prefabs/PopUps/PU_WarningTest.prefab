@@ -96,9 +96,25 @@ PrefabInstance:
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5452569744604668141, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_Size.x
+      value: 113.19155
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452569744604668141, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_Offset.x
+      value: -42.809223
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452569744604668141, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.71000004
+      objectReference: {fileID: 0}
     - target: {fileID: 6355752684662952559, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_text
       value: Trojanhorse.exe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355752684662952559, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_margin.z
+      value: 12.134888
       objectReference: {fileID: 0}
     - target: {fileID: 8958661406197841948, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalScale.x
@@ -142,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -123.5
+      value: -85.1
       objectReference: {fileID: 0}
     - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_AnchoredPosition.y
