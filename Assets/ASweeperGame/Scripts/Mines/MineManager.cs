@@ -7,6 +7,7 @@ public class BombManager : MonoBehaviour
     [SerializeField] private int _columnCount;
 
     [SerializeField] private float _bombTrySpawnTime = 5f;
+    private float _originalSpawnInterval;
     [SerializeField] private float _bombSpawnTimeRandomness;
     private float _timeSinceLastBombSpawnAttempt = 0f;
 
@@ -15,6 +16,7 @@ public class BombManager : MonoBehaviour
 
     void Start()
     {
+        _originalSpawnInterval = _bombTrySpawnTime;
         SpawnBomb();
         SpawnBomb();
         SpawnBomb();
@@ -71,5 +73,10 @@ public class BombManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void SetDifficultyScaler(float scaler)
+    {
+        _bombTrySpawnTime = _originalSpawnInterval  - scaler;
     }
 }
