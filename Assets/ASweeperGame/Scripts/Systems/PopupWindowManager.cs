@@ -10,7 +10,7 @@ public class PopupWindowManager : MonoBehaviour
 {
     [SerializeField] private float _popupTrySpawnTime = 5f;
     private float _originalSpawnInterval;
-    [SerializeField] private int _popupSpawnTimeRandomOffset;
+    [SerializeField] private float _popupSpawnTimeRandomOffset;
     private float _timeSinceLastPopupSpawnAttempt = 0f;
 
     [SerializeField] private List<PopupWindow> _popupWindows = new List<PopupWindow>();
