@@ -7,6 +7,13 @@ public class GameDifficultyManager : MonoBehaviour
     [SerializeField] private float _currentDifficultyScaler = 1f;
     private float _timer = 0;
 
+    private void Awake()
+    {
+        Time.timeScale = 1f;
+    }
+
+
+
     void Start()
     {
 
