@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd74fbe1b92665b498d13b6d204f3db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSheetAnimator
-  _currentAnimation: {fileID: 11400000, guid: 40d34be2c27748848843c0dfbed04488, type: 2}
+  _currentAnimation: {fileID: 11400000, guid: 2fcedbd0dd709fe4ab0aeaa35507adbe, type: 2}
   _type: 0
   _loop: 1
   _endAnimationType: 0
