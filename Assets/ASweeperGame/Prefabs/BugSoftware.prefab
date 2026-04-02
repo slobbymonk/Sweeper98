@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6321233462845535683}
   - component: {fileID: 7358652456445616716}
   - component: {fileID: 4620678188863656441}
+  - component: {fileID: 4849214354159353452}
   m_Layer: 11
   m_Name: BugSoftware
   m_TagString: Bug
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4378444018322456103, guid: 4531a851b1346a841bd157c714fa8f98, type: 3}
+  m_Sprite: {fileID: 7051918580761580929, guid: 0b0b65772b1af254bb4abd42a9020b75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,6 +155,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bug
   _speed: 1
   _rotationSpeed: 5
+--- !u!114 &4849214354159353452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731581561834655237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd74fbe1b92665b498d13b6d204f3db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteSheetAnimator
+  _currentAnimation: {fileID: 11400000, guid: 04165f5516a4b944bb3dcff7edee351a, type: 2}
+  _type: 0
+  _loop: 1
+  _endAnimationType: 0
 --- !u!1 &6872131152349848050
 GameObject:
   m_ObjectHideFlags: 0
