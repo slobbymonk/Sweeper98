@@ -9,6 +9,8 @@ public class StartingScreenManager : MonoBehaviour
     [SerializeField] private GameObject _trojanPopUp;
     [SerializeField] private GameObject _mineSweeper;
     [SerializeField] private GameObject _devsPopUp;
+    [SerializeField] private GameObject _arrow1PU;
+    [SerializeField] private GameObject _arrow2PU;
     [SerializeField] private GameObject _progressBar;
     [SerializeField] private GameObject[] _thingsThatArentInGameScene;
 
@@ -21,6 +23,8 @@ public class StartingScreenManager : MonoBehaviour
     {
         _trojanPopUp.SetActive(false);
         _devsPopUp.SetActive(false);
+        _arrow1PU.SetActive(false);
+        _arrow2PU.SetActive(false);
         OnIntroScreenStart();
     }
 
@@ -85,6 +89,14 @@ public class StartingScreenManager : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         _devsPopUp.SetActive(true);
+        RuntimeManager.PlayOneShot(_popUpSound);
+
+        yield return new WaitForSeconds(0.4f);
+        _arrow1PU.SetActive(true);
+        RuntimeManager.PlayOneShot(_popUpSound);
+
+        yield return new WaitForSeconds(0.6f);
+        _arrow2PU.SetActive(true);
         RuntimeManager.PlayOneShot(_popUpSound);
     }
 }
