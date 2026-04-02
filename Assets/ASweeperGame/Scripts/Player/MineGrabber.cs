@@ -37,6 +37,9 @@ public class MineGrabber : MonoBehaviour
 
     private void Start()
     {
+        if(InputManager.Instance == null)
+            return;
+
         InputManager.Instance.OnLaunched += BeginCharge;
         InputManager.Instance.OnLaunchReleased += ReleaseLaunch;
 
