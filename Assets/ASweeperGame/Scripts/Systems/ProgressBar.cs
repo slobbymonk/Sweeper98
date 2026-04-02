@@ -47,6 +47,11 @@ public class ProgressBar : MonoBehaviour, IDraggable
         _progressText.text = $"{progressPercentageString}%";
         _fillImage.fillAmount = progressPercentage / 100;
 
+        if(progressPercentage >= 100)
+        {
+            GameStateManager.Instance.ChangeState(GameStateManager.GameState.Win);
+        }
+
     }
     public void GrabLogic()
     {
