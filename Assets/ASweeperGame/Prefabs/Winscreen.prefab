@@ -63,6 +63,10 @@ PrefabInstance:
       value: -1441226639
       objectReference: {fileID: 0}
     - target: {fileID: 962995991808578643, guid: eba81c325dab3a74f8d7ff1eb0eee560, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 962995991808578643, guid: eba81c325dab3a74f8d7ff1eb0eee560, type: 3}
       propertyPath: m_SortingLayerID
       value: -1441226639
       objectReference: {fileID: 0}
@@ -190,7 +194,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1441226639
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 955105544194363446, guid: eba81c325dab3a74f8d7ff1eb0eee560, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

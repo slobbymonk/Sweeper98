@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: 15.968369
       objectReference: {fileID: 0}
+    - target: {fileID: 6384653889675933144, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8782665029303873933, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.362

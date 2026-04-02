@@ -14,6 +14,7 @@ public class Mine : MonoBehaviour
     private CircleCutter _circleCutter;
     private SpriteCutter _spriteCutter;
     [SerializeField] float _circleRadius = 1f;
+    [SerializeField] float _playerKillRadius = 1f;
     [SerializeField] Transform _explosionRange;
     [SerializeField] GameObject _explosion;
     [SerializeField] EventReference _explosionSound;
@@ -28,6 +29,9 @@ public class Mine : MonoBehaviour
 
     public Rigidbody2D Rb { get; private set; }
 
+
+    private bool _hasExploded = false;
+
     private void Awake()
     {
         _circleCutter = GetComponent<CircleCutter>();
@@ -41,6 +45,9 @@ public class Mine : MonoBehaviour
     [Button]
     public void Explode()
     {
+        if (_hasExploded) return;
+        _hasExploded = true;
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _circleRadius);
 
         for (int i = 0; i < colliders.Length; i++)
@@ -48,6 +55,11 @@ public class Mine : MonoBehaviour
             if (colliders[i].gameObject.TryGetComponent<TMP_Text>(out var text))
             {
                 Destroy(text.gameObject);
+            }
+            if (colliders[i].gameObject.TryGetComponent<PlayerHealth>(out var health))
+            {
+                if (Vector3.Distance(transform.position, health.transform.position) > _playerKillRadius) continue;
+                health.Die();
             }
             if (colliders[i].gameObject.TryGetComponent<PopupWindowCloseButton>(out var closeButton))
             {
@@ -59,7 +71,12 @@ public class Mine : MonoBehaviour
                 bug.Die();
                 continue;
             }
-        
+            if (colliders[i].gameObject.TryGetComponent<Mine>(out var mine))
+            {
+                mine.Explode();
+                continue;
+            }
+
 
             if (!colliders[i].gameObject.TryGetComponent<PopupWindow>(out var window)) continue;
 
@@ -103,5 +120,7 @@ public class Mine : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(transform.position, _circleRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, _playerKillRadius);
     }
 }

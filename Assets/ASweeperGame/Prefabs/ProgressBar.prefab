@@ -532,7 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProgressBar
   _fillImage: {fileID: 6112521388343374049}
   _progressText: {fileID: 1621371753976013790}
-  _timeBeforeFull: 30
+  _timeBeforeFull: 85
+  _boxWidth: 3.40515
 --- !u!61 &1822667692123607738
 BoxCollider2D:
   m_ObjectHideFlags: 0
