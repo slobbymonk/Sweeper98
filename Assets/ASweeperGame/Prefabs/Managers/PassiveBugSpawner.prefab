@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveBugSpawner
   _bugPrefab: {fileID: 4731581561834655237, guid: 27a8feff6adfb974d850734f57b54715, type: 3}
-  _spawnInterval: 3
+  _spawnInterval: 4
