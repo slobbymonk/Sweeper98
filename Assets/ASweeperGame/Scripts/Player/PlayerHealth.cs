@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.Collections.AllocatorManager;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,8 +10,13 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private List<Collision2D> _collidersBeingTouched = new List<Collision2D>();
 
+    private bool _isDead;
+
     public void Die()
     {
+        if(_isDead) return;
+
+        _isDead = true;
         RuntimeManager.PlayOneShot(_deathSound);
         GameStateManager.Instance.ChangeState(GameStateManager.GameState.GameOver);
     }
@@ -21,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
 
         Die();
     }
+
+
 
     private Dictionary<Collider2D, Vector2> _contactNormals = new Dictionary<Collider2D, Vector2>();
 

@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_text
       value: RamDownload.com
       objectReference: {fileID: 0}
+    - target: {fileID: 6355752684662952559, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_margin.z
+      value: 66.87635
+      objectReference: {fileID: 0}
     - target: {fileID: 8782665029303873933, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.753
@@ -193,8 +197,12 @@ PrefabInstance:
       value: 1.575
       objectReference: {fileID: 0}
     - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 14.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -27.7
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 9175558689009595832, guid: 3c6d4349e7a8bf24b9e2af8988342677, type: 3}
       propertyPath: m_AnchoredPosition.y

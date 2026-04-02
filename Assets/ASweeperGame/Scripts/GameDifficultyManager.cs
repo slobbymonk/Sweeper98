@@ -7,6 +7,13 @@ public class GameDifficultyManager : MonoBehaviour
     [SerializeField] private float _currentDifficultyScaler = 1f;
     private float _timer = 0;
 
+    private void Awake()
+    {
+        Time.timeScale = 1f;
+    }
+
+
+
     void Start()
     {
 
@@ -48,6 +55,12 @@ public class GameDifficultyManager : MonoBehaviour
         foreach (MousePointerSpawner mousePointerSpawner in mousePointerSpawners)
         {
             mousePointerSpawner.SetDifficultyScalar(_currentDifficultyScaler);
+        }
+
+        BombManager[] bombManagers = FindObjectsByType<BombManager>(FindObjectsSortMode.None);
+        foreach (BombManager bombManager in bombManagers)
+        {
+            bombManager.SetDifficultyScaler(_currentDifficultyScaler);
         }
     }
 }

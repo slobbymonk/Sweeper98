@@ -31,7 +31,6 @@ public class GameStateManager : MonoBehaviour
     }
     public void ChangeState(GameState newState)
     {
-        if (CurrentState == newState) return;
         CurrentState = newState;
         OnStateChanged?.Invoke(newState);
         HandleState(newState);
@@ -46,12 +45,12 @@ public class GameStateManager : MonoBehaviour
                 SceneManager.LoadScene("TitleScene");
                 break;
             case GameState.Playing:
-                SceneManager.LoadScene("PlayingScene");
                 Time.timeScale = 1f;
+                SceneManager.LoadScene("PlayingScene");
                 break;
             case GameState.GameOver:
-                GameObject.Instantiate(_gameOverScreen);
                 Time.timeScale = 0f;
+                GameObject.Instantiate(_gameOverScreen);
                 break;
         }
         }

@@ -1,8 +1,8 @@
 using FMODUnity;
 using PrimeTween;
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class StartingScreenManager : MonoBehaviour
 {
@@ -18,6 +18,8 @@ public class StartingScreenManager : MonoBehaviour
     [SerializeField] private EventReference _startupSound;
 
     [SerializeField] private EventReference _popUpSound;
+
+    public Action OnWindowsPopUp;
 
     private void Start()
     {
@@ -73,6 +75,7 @@ public class StartingScreenManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
 
+        OnWindowsPopUp?.Invoke();
         _trojanPopUp.SetActive(true);
 
         Vector2 scale = _trojanPopUp.transform.localScale;
