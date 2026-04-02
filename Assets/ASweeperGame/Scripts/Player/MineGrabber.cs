@@ -26,8 +26,6 @@ public class MineGrabber : MonoBehaviour
     private float _chargeTime;
     private Vector3 _heldMineBaseLocalPos;
 
-    [SerializeField] private InputActionReference _mousePositionReference;
-
     [SerializeField] EventReference _pickupMine;
     [SerializeField] EventReference _launchMine;
 
@@ -71,9 +69,25 @@ public class MineGrabber : MonoBehaviour
     private Vector2 _aimDirection;
     private void AimAtMouse()
     {
-        Vector2 screenPos = Mouse.current.position.ReadValue();
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z));
-        Vector2 direction = (Vector2)(mouseWorld - _rotationPosition.position);
+        Vector2 direction;
+
+        if (InputManager.Instance.keyboardOrMouse == KeyboardOrMouse.Controller)
+        {
+            Vector2 stickInput = InputManager.Instance.LookInput;
+
+            if (stickInput.sqrMagnitude < 0.1f) return;
+
+            direction = stickInput.normalized;
+            Debug.Log(stickInput);
+        }
+        else
+        {
+            Vector2 screenPos = Mouse.current.position.ReadValue();
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(
+                new Vector3(screenPos.x, screenPos.y, -Camera.main.transform.position.z));
+            direction = (Vector2)(mouseWorld - _rotationPosition.position);
+        }
+
         float angleRad = Mathf.Atan2(direction.y, direction.x);
         float angleDeg = angleRad * Mathf.Rad2Deg;
         _rotationPosition.rotation = Quaternion.Euler(0f, 0f, angleDeg);
@@ -129,7 +143,14 @@ public class MineGrabber : MonoBehaviour
 
         if (!_hasGrabbed)
         {
-            PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold left mouse button.", 5);
+            if(InputManager.Instance.keyboardOrMouse == KeyboardOrMouse.Keyboard)
+            {
+                PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold left mouse to charge.", 5);
+            }
+            else
+            {
+                PlayerTalker.Instance.ShowText("It looks like I've got a bomb, hold right trigger to charge.", 5);
+            }
             _hasGrabbed = true;
         }
 
