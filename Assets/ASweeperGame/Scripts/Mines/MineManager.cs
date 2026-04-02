@@ -13,6 +13,8 @@ public class BombManager : MonoBehaviour
 
     [SerializeField] private GameObject bombPrefab;
 
+    public bool CanSpawn { get; set; } = true;
+
 
     void Start()
     {
@@ -26,6 +28,8 @@ public class BombManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!CanSpawn) return;
+
         _timeSinceLastBombSpawnAttempt += Time.deltaTime;
         if (_timeSinceLastBombSpawnAttempt >= _bombTrySpawnTime)
         {

@@ -93,9 +93,10 @@ public class StateMachine : MonoBehaviour
     {
         _currentState?.Update();
     }
-    public void FixedUpdate()
+    
+    public void StartResettingProgress(ProgressBar progressBar)
     {
-        _currentState?.FixedUpdate();
+        ChangeState(new ResetMouseProgress(this, progressBar));
     }
 
 }

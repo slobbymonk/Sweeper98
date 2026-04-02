@@ -47,5 +47,11 @@ TagManager:
   - name: AlwaysOnTop
     uniqueID: 2853740657
     locked: 0
+  - name: ProgressBar
+    uniqueID: 1722466879
+    locked: 0
+  - name: MouseLayer
+    uniqueID: 513644877
+    locked: 0
   m_RenderingLayers:
   - Default

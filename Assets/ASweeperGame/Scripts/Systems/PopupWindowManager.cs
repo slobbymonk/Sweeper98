@@ -10,7 +10,7 @@ public class PopupWindowManager : MonoBehaviour
 {
     [SerializeField] private float _popupTrySpawnTime = 5f;
     private float _originalSpawnInterval;
-    [SerializeField] private int _popupSpawnTimeRandomOffset;
+    [SerializeField] private float _popupSpawnTimeRandomOffset;
     private float _timeSinceLastPopupSpawnAttempt = 0f;
 
     [SerializeField] private List<PopupWindow> _popupWindows = new List<PopupWindow>();
@@ -18,6 +18,8 @@ public class PopupWindowManager : MonoBehaviour
     [SerializeField] private GameObject[] _popupPrefab;
 
     [SerializeField] private Transform[] _popupSpawnableArea;
+
+    public bool CanSpawn = true;
 
     public static PopupWindowManager Instance { get; private set; }
 
@@ -40,6 +42,8 @@ public class PopupWindowManager : MonoBehaviour
 
     public void Update()
     {
+        if (!CanSpawn) return;
+
         _timeSinceLastPopupSpawnAttempt += Time.deltaTime;
         if (_timeSinceLastPopupSpawnAttempt >= _popupTrySpawnTime)
         {
@@ -95,5 +99,13 @@ public class PopupWindowManager : MonoBehaviour
     {
         window.OnDestroyed -= HandlePopupDestroyed;
         _popupWindows.Remove(window);
+    }
+
+    public void CloseAllWindows()
+    {
+        for (int i = 0; i < _popupWindows.Count; i++)
+        {
+            _popupWindows[i].CloseWindow();
+        }
     }
 }
