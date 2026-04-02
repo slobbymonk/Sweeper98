@@ -71,12 +71,14 @@ public class DraggingState : State
                 _targetPopup.HasBeenDragged = true;
                 _targetPopup.transform.SetParent(null);
                 stateMachine.ChangeState(stateMachine.GetNewState());
-                stateMachine.gameObject.GetComponent<MouseSpriteLogic>().StopGrabAnim();
             }
         }
     }
 
-    public override void Exit() { }
+    public override void Exit() 
+    {
+        stateMachine.gameObject.GetComponent<MouseSpriteLogic>().StopGrabAnim();
+    }
 
     private void FindPopupDropzone()
     {
